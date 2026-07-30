@@ -1,0 +1,18 @@
+.admin-sidebar {
+    width: 280px; height: 100vh; background: #070707;
+    position: sticky; top: 0;
+}
+.admin-sidebar .nav-link {
+    color: #888; border-radius: 6px; padding: 12px; transition: 0.3s;
+}
+.admin-sidebar .nav-link:hover, .admin-sidebar .nav-link.active {
+    background: rgba(212, 175, 55, 0.15); color: #d4af37;
+}
+.admin-content { background: #0b0b0b; min-height: 100vh; }
+.auth-overlay {
+    position: fixed; width: 100vw; height: 100vh;
+    background: #000; z-index: 10000; display: flex;
+    justify-content: center; align-items: center;
+}
+.admin-tab-pane { display: none; }
+.admin-tab-pane.active { display: block; }
