@@ -210,36 +210,40 @@
             }
 
             tableBody.innerHTML = orders.map(ord => `
-                <tr>
-                    <td class="fw-bold">${ord.orderId}</td>
-                    <td class="small text-muted">${ord.date}</td>
-                    <td>
-                        <strong>${ord.customer.name}</strong><br>
-                        <small class="text-muted"><i class="fa-solid fa-phone me-1"></i>${ord.customer.phone}</small><br>
-                        <small class="text-muted"><i class="fa-solid fa-location-dot me-1"></i>${ord.customer.address}</small>
-                    </td>
-                    <td>
-                        <ul class="list-unstyled mb-0 small">
-                            ${ord.items.map(item => `<li>• ${item.name} (x${item.qty})</li>`).join('')}
-                        </ul>
-                    </td>
-                    <td class="fw-bold text-success">${ord.total}</td>
-                    <td>
-                        <select class="form-select form-select-sm fw-semibold" onchange="updateOrderStatus('${ord.orderId}', this.value)">
-                            <option value="Pending" ${ord.status === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
-                            <option value="Processing" ${ord.status === 'Processing' ? 'selected' : ''}>⚙️ Processing</option>
-                            <option value="Shipped" ${ord.status === 'Shipped' ? 'selected' : ''}>🚚 Shipped</option>
-                            <option value="Delivered" ${ord.status === 'Delivered' ? 'selected' : ''}>✅ Delivered</option>
-                            <option value="Cancelled" ${ord.status === 'Cancelled' ? 'selected' : ''}>❌ Cancelled</option>
-                        </select>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-sm btn-outline-danger" title="Delete Order" onclick="deleteSingleOrder('${ord.orderId}')">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+        <tr>
+            <td class="fw-bold">${ord.orderId}</td>
+            <td class="small text-muted">${ord.date}</td>
+            <td>
+                <strong>${ord.customer?.name || 'N/A'}</strong><br>
+                <small class="text-muted"><i class="fa-solid fa-phone me-1"></i>${ord.customer?.phone || 'N/A'}</small><br>
+                <small class="text-muted"><i class="fa-solid fa-location-dot me-1"></i>${ord.customer?.address || 'N/A'}</small>
+            </td>
+            <td>
+                <span class="badge ${ord.payment?.method === 'COD' ? 'bg-secondary' : 'bg-primary'} mb-1">${ord.payment?.method || 'COD'}</span>
+                ${ord.payment?.trxId && ord.payment?.trxId !== 'N/A' ? `<br><small class="text-muted">TRX: <code>${ord.payment.trxId}</code></small>` : ''}
+            </td>
+            <td>
+                <ul class="list-unstyled mb-0 small">
+                    ${ord.items ? ord.items.map(item => `<li>• ${item.name} (x${item.qty})</li>`).join('') : ''}
+                </ul>
+            </td>
+            <td class="fw-bold text-success">${ord.total}</td>
+            <td>
+                <select class="form-select form-select-sm fw-semibold" onchange="updateOrderStatus('${ord.orderId}', this.value)">
+                    <option value="Pending" ${ord.status === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+                    <option value="Processing" ${ord.status === 'Processing' ? 'selected' : ''}>⚙️ Processing</option>
+                    <option value="Shipped" ${ord.status === 'Shipped' ? 'selected' : ''}>🚚 Shipped</option>
+                    <option value="Delivered" ${ord.status === 'Delivered' ? 'selected' : ''}>✅ Delivered</option>
+                    <option value="Cancelled" ${ord.status === 'Cancelled' ? 'selected' : ''}>❌ Cancelled</option>
+                </select>
+            </td>
+            <td class="text-end">
+                <button class="btn btn-sm btn-outline-danger" title="Delete Order" onclick="deleteSingleOrder('${ord.orderId}')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
         }
 
         window.updateOrderStatus = function (orderId, newStatus) {
@@ -261,7 +265,6 @@
                 renderOrdersTable();
             }
         };
-
         function clearAllOrders() {
             if (confirm('Kya aap tamam order history delete karna chahte hain?')) {
                 localStorage.removeItem('umar_royale_orders');
