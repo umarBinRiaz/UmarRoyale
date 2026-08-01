@@ -1,10 +1,6 @@
 ﻿
 (function () {
     'use strict';
-
-    /* ------------------------------------------------------------------
-       0. STORAGE KEYS & DEFAULT CATALOG
-       ------------------------------------------------------------------ */
     var STORAGE_PRODUCTS = 'royale_store_products';
     var STORAGE_CART     = 'royale_cart';
     var STORAGE_ORDERS   = 'royale_orders';
@@ -50,7 +46,7 @@
         {
             id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
             price: 175, rating: 5, stock: 40, bestseller: false,
-            image: 'src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80',
+            image: 'https://scentus.pk/wp-content/uploads/2026/05/Office.png',
             description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
         }
     ];
@@ -70,15 +66,10 @@
         try { localStorage.setItem(key, JSON.stringify(value)); } catch (err) { /* ignore */ }
     }
 
-    function getProducts() {
-        var stored = read(STORAGE_PRODUCTS, null);
-        if (stored === null) {
-            write(STORAGE_PRODUCTS, DEFAULT_PRODUCTS);
-            return DEFAULT_PRODUCTS;
-        }
-        return stored;
-    }
-    function getCart()      { return read(STORAGE_CART, []); }
+function getProducts() {
+    return DEFAULT_PRODUCTS;
+}
+   function getCart()      { return read(STORAGE_CART, []); }
     function getOrders()    { return read(STORAGE_ORDERS, []); }
     function getSettings()  { return read(STORAGE_SETTINGS, {}); }
 
