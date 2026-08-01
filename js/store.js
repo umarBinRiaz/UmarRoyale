@@ -45,9 +45,15 @@
         },
         {
             id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
-            price: 175, rating: 5, stock: 40, bestseller: false,
+            price: 175, rating: 5, stock: 40, bestseller: true,
             image: 'https://scentus.pk/wp-content/uploads/2026/05/Office.png',
             description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
+        },
+        {
+            id: 'p8', name: 'LOCATOSE WHITEs', cat: 'floral', tagline: 'Perfume Oil',
+            price: 180, rating: 5, stock: 40, bestseller: false,
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjI330IwycnvpguA8R4aZjc4vIDnYoaxCD0Ht80pFabw&s=10',
+            description: 'A fresh, clean fragrance with notes of white flowers and a hint of vanilla.'
         }
     ];
 
