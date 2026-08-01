@@ -46,6 +46,12 @@
             price: 150, rating: 5, stock: 30, bestseller: false,
             image: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80',
             description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
+        },
+        {
+            id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
+            price: 175, rating: 5, stock: 40, bestseller: false,
+            image: 'src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80',
+            description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
         }
     ];
 
