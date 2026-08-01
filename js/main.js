@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cartDrawer')?.classList.remove('open');
 
         // Redirect to WhatsApp Number
-        const whatsappNumber = "923400085347";
+        const whatsappNumber = "923092230740";
         window.open(`https://wa.me/${whatsappNumber}?text=${waMessage}`, '_blank');
     });
 });

@@ -1,537 +1,703 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMAR ROYALE | Haute Parfumerie Paris</title>
+    <meta name="description"
+        content="UMAR ROYALE — Haute Parfumerie de Paris. Handcrafted, rare botanical fragrances. Pure CSS experience.">
     <link rel="shortcut icon" href="./assets/u.png" type="image/png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,500&family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <!-- Font Awesome & Bootstrap 5 CSS -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS Link -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Engine CSS (Zero JavaScript) -->
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR WITH ALL LINKS -->
-    <nav class="navbar navbar-expand-lg fixed-top luxury-nav">
-        <div class="container px-4">
-            <a class="navbar-brand brand-title" href="#home">UMAR ROYALE</a>
+    <!-- ============================================================
+         PURE CSS STATE SWITCHES  (checkbox / radio / :target only)
+         ============================================================ -->
+    <input type="checkbox" id="themeChk" class="state" hidden>
+    <input type="checkbox" id="menuChk" class="state" hidden>
+    <input type="checkbox" id="searchChk" class="state" hidden>
+    <input type="checkbox" id="cartChk" class="state" hidden>
+    <input type="checkbox" id="modalChk" class="state" hidden>
 
-            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <!-- ===== CINEMATIC INTRO (pure CSS, plays once) ===== -->
+    <div class="intro" aria-hidden="true">
+        <div class="intro-ring"></div>
+        <div class="intro-brand">
+            <span class="intro-script">UMAR</span>
+            <span class="intro-title">ROYALE</span>
+        </div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="navbar-lux">
+        <div class="nav-inner">
+            <a href="#home" class="brand-title">UMAR <span>ROYALE</span></a>
+
+            <label for="menuChk" class="nav-toggle" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
-            </button>
+                <i class="fa-solid fa-xmark"></i>
+            </label>
 
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav mx-auto text-center py-2 py-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#home">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#collections">COLLECTIONS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#bestsellers">BESTSELLERS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#story">OUR STORY</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
-                </ul>
-            </div>
+            <nav class="nav-links">
+                <a href="#home" class="active">HOME</a>
+                <a href="#collections">COLLECTIONS</a>
+                <a href="#bestsellers">BESTSELLERS</a>
+                <a href="#story">OUR STORY</a>
+                <a href="#testimonials">CLIENTS</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
 
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn-icon" id="themeToggle" title="Toggle Light/Dark Theme">
-                    <i class="fa-solid fa-moon" id="themeIcon"></i>
-                </button>
-                <button class="btn-icon" id="searchToggleBtn">
+            <div class="nav-actions">
+                <label for="searchChk" class="nav-btn" title="Search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <button class="btn-icon position-relative" id="cartToggleBtn">
+                </label>
+                <label for="cartChk" class="nav-btn" title="Shopping bag">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count-badge" id="cartCount">0</span>
-                </button>
-                <a href="admin.html" class="cms-btn d-none d-md-inline-block ms-2">CMS ACCESS</a>
+                    <span class="cart-count">3</span>
+                </label>
+                <label for="themeChk" class="nav-btn" title="Light / Dark">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </label>
+                <a href="admin.html" class="cms-link">CMS</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- SEARCH OVERLAY -->
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-box">
-            <input type="text" placeholder="Search fragrances, notes (e.g., Oud, Rose)..." id="searchInput">
-            <button class="close-btn" id="closeSearchBtn">&times;</button>
+    <!-- ==================== SEARCH PANEL ==================== -->
+    <div class="search-panel" role="dialog" aria-label="Search">
+        <label for="searchChk" class="panel-close">&times;</label>
+        <span class="search-script">Search the Maison</span>
+        <input type="text" class="search-input" placeholder="Oud, Rose, Amber...">
+        <div class="search-tags">
+            <a href="#collections">#OUD</a>
+            <a href="#collections">#ROSE</a>
+            <a href="#collections">#AMBER</a>
+            <a href="#collections">#MUSK</a>
+            <a href="#collections">#FRESH</a>
         </div>
     </div>
 
-    <!-- HOME / HERO SECTION -->
-    <section class="hero-section d-flex align-items-center" id="home">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6 hero-text-col pe-lg-5">
-                    <span class="hero-subtitle">HAUTE PARFUMERIE · PARIS</span>
-                    <h1 class="hero-title my-3">ESSENCE OF UNRIVALED PRESTIGE</h1>
-                    <p class="hero-description mb-4">
-                        Handcrafted, rare botanical fragrances distilled to perfection. Designed for those who command distinction effortlessly.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="#collections" class="btn-editorial-primary">EXPLORE COLLECTION</a>
-                        <a href="#bestsellers" class="btn-editorial-secondary">DISCOVER SCENTS</a>
+    <!-- ==================== CART DRAWER ==================== -->
+    <aside class="cart-drawer" role="dialog" aria-label="Shopping bag">
+        <div class="drawer-head">
+            <h3>YOUR BAG <span class="gold-text">(3)</span></h3>
+            <label for="cartChk" class="panel-close">&times;</label>
+        </div>
+
+        <div class="drawer-items">
+            <div class="cart-row">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=200&q=80"
+                    alt="ROYAL OUD NOIR">
+                <div class="cart-row-meta">
+                    <strong>ROYAL OUD NOIR</strong>
+                    <small>1 × $280.00</small>
+                </div>
+                <b class="gold-text">$280</b>
+            </div>
+            <div class="cart-row">
+                <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=200&q=80"
+                    alt="IMPERIAL ROSE &amp; AMBER">
+                <div class="cart-row-meta">
+                    <strong>IMPERIAL ROSE &amp; AMBER</strong>
+                    <small>2 × $320.00</small>
+                </div>
+                <b class="gold-text">$640</b>
+            </div>
+            <div class="cart-row">
+                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=200&q=80"
+                    alt="SILVER MIST">
+                <div class="cart-row-meta">
+                    <strong>SILVER MIST</strong>
+                    <small>1 × $150.00</small>
+                </div>
+                <b class="gold-text">$150</b>
+            </div>
+        </div>
+
+        <div class="drawer-foot">
+            <div class="subtotal">Subtotal <b class="gold-text">$1,070.00</b></div>
+            <label for="modalChk" class="btn-gold w-100">PROCEED TO CHECKOUT</label>
+        </div>
+    </aside>
+
+    <!-- ==================== CHECKOUT MODAL ==================== -->
+    <div class="checkout-modal" role="dialog" aria-label="Checkout">
+        <div class="checkout-card">
+            <label for="modalChk" class="panel-close">&times;</label>
+            <span class="eyebrow">Final step</span>
+            <h3 class="modal-title">Complete Your Order</h3>
+            <form class="checkout-form" action="#" method="get">
+                <input type="text" name="name" placeholder="FULL NAME" required>
+                <input type="tel" name="phone" placeholder="PHONE / MOBILE" required>
+                <textarea name="address" rows="2" placeholder="SHIPPING ADDRESS" required></textarea>
+                <div class="pay-row">
+                    <span>Total Pay</span>
+                    <b class="gold-text">$1,070.00</b>
+                </div>
+                <button class="btn-gold w-100" type="submit">CONFIRM ORDER</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Backdrops -->
+    <label for="searchChk" class="backdrop b-search" aria-hidden="true"></label>
+    <label for="cartChk" class="backdrop b-cart" aria-hidden="true"></label>
+    <label for="modalChk" class="backdrop b-modal" aria-hidden="true"></label>
+
+    <main>
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="home">
+            <div class="hero-orn orn-tl"></div>
+            <div class="hero-orn orn-br"></div>
+
+            <div class="hero-content">
+                <span class="eyebrow reveal">Haute Parfumerie · Paris</span>
+                <h1 class="hero-title reveal">The Essence of<br><em>Unrivaled</em> Prestige</h1>
+                <p class="hero-text reveal">Handcrafted, rare botanical fragrances distilled to perfection — designed
+                    for those who command distinction effortlessly.</p>
+                <div class="hero-cta reveal">
+                    <a href="#collections" class="btn-gold">Explore Collection</a>
+                    <a href="#bestsellers" class="btn-ghost">Discover Scents</a>
+                </div>
+                <div class="hero-trust reveal">
+                    <span class="stars">★★★★★</span>
+                    <span class="trust-text">4.9 / 5 — Loved by 2,400+ connoisseurs worldwide</span>
+                </div>
+            </div>
+
+            <div class="hero-visual reveal">
+                <div class="bottle-frame">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=80"
+                        alt="UMAR ROYALE signature flacon">
+                </div>
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+
+                <div class="badge-rotate">
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <path id="circPath" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0" />
+                        </defs>
+                        <text>
+                            <textPath href="#circPath">HAUTE PARFUMERIE • EST. 2012 • PARIS •</textPath>
+                        </text>
+                    </svg>
+                    <i class="fa-solid fa-droplet"></i>
+                </div>
+
+                <div class="mini-card mini-card-a">
+                    <i class="fa-solid fa-award gold-text"></i>
+                    <div>
+                        <b>Maison Réputée</b>
+                        <small>Limited batch Nº 03</small>
                     </div>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <div class="hero-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80" alt="Umar Royale Perfume" class="img-fluid hero-bottle-img">
+            </div>
+
+            <div class="scroll-cue" aria-hidden="true">
+                <span>SCROLL</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- ==================== MARQUEE ==================== -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>OUD NOIR</span><i class="fa-solid fa-asterisk"></i>
+                <span>IMPERIAL ROSE</span><i class="fa-solid fa-asterisk"></i>
+                <span>GOLDEN SANDS</span><i class="fa-solid fa-asterisk"></i>
+                <span>VELVET AMBER</span><i class="fa-solid fa-asterisk"></i>
+                <span>SILVER MIST</span><i class="fa-solid fa-asterisk"></i>
+                <span>OUD NOIR</span><i class="fa-solid fa-asterisk"></i>
+                <span>IMPERIAL ROSE</span><i class="fa-solid fa-asterisk"></i>
+                <span>GOLDEN SANDS</span><i class="fa-solid fa-asterisk"></i>
+                <span>VELVET AMBER</span><i class="fa-solid fa-asterisk"></i>
+                <span>SILVER MIST</span><i class="fa-solid fa-asterisk"></i>
+            </div>
+        </div>
+
+        <!-- ==================== COLLECTIONS ==================== -->
+        <section class="section" id="collections">
+            <div class="section-head reveal">
+                <span class="sec-no">01</span>
+                <span class="eyebrow">Curated Selection</span>
+                <h2 class="section-title">Signature <em>Collections</em></h2>
+                <p class="section-sub">Six compositions, each a masterpiece of rare botanicals and precise
+                    craftsmanship.</p>
+            </div>
+
+            <div class="filters reveal">
+                <input type="radio" name="filter" id="f-all" checked>
+                <input type="radio" name="filter" id="f-oud">
+                <input type="radio" name="filter" id="f-floral">
+                <input type="radio" name="filter" id="f-fresh">
+
+                <label for="f-all">All</label>
+                <label for="f-oud">Oud</label>
+                <label for="f-floral">Floral</label>
+                <label for="f-fresh">Fresh</label>
+            </div>
+
+            <div class="product-grid">
+                <article class="product" data-cat="oud">
+                    <div class="product-media">
+                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"
+                            alt="ROYAL OUD NOIR">
+                        <a href="#lb1" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
+                        <span class="product-badge">Bestseller</span>
+                    </div>
+                    <div class="product-meta">
+                        <span class="product-cat">Eau de Parfum</span>
+                        <h3 class="product-name">Royal Oud Noir</h3>
+                        <div class="product-price"><b>$280.00</b><span class="stars">★★★★★</span></div>
+                    </div>
+                </article>
+
+                <article class="product" data-cat="floral">
+                    <div class="product-media">
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80"
+                            alt="IMPERIAL ROSE AND AMBER">
+                        <a href="#lb2" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
+                        <span class="product-badge">Bestseller</span>
+                    </div>
+                    <div class="product-meta">
+                        <span class="product-cat">Extrait de Parfum</span>
+                        <h3 class="product-name">Imperial Rose &amp; Amber</h3>
+                        <div class="product-price"><b>$320.00</b><span class="stars">★★★★★</span></div>
+                    </div>
+                </article>
+
+                <article class="product" data-cat="fresh">
+                    <div class="product-media">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"
+                            alt="SILVER MIST">
+                        <a href="#lb3" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
+                    </div>
+                    <div class="product-meta">
+                        <span class="product-cat">Eau de Toilette</span>
+                        <h3 class="product-name">Silver Mist</h3>
+                        <div class="product-price"><b>$150.00</b><span class="stars">★★★★☆</span></div>
+                    </div>
+                </article>
+
+                <article class="product" data-cat="fresh">
+                    <div class="product-media">
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"
+                            alt="GOLDEN SANDS">
+                        <a href="#lb4" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
+                    </div>
+                    <div class="product-meta">
+                        <span class="product-cat">Eau de Parfum</span>
+                        <h3 class="product-name">Golden Sands</h3>
+                        <div class="product-price"><b>$270.00</b><span class="stars">★★★★★</span></div>
+                    </div>
+                </article>
+
+                <article class="product" data-cat="oud">
+                    <div class="product-media">
+                        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80"
+                            alt="VELVET AMBER INTENSE">
+                        <a href="#lb5" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
+                    </div>
+                    <div class="product-meta">
+                        <span class="product-cat">Eau de Parfum</span>
+                        <h3 class="product-name">Velvet Amber Intense</h3>
+                        <div class="product-price"><b>$185.00</b><span class="stars">★★★★☆</span></div>
+                    </div>
+                </article>
+
+                <article class="product" data-cat="floral">
+                    <div class="product-media">
+                        <img src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80"
+                            alt="ROSE DE TAIF NOIR">
+                        <a href="#lb6" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
+                    </div>
+                    <div class="product-meta">
+                        <span class="product-cat">Perfume Oil</span>
+                        <h3 class="product-name">Rose de Taïf Noir</h3>
+                        <div class="product-price"><b>$150.00</b><span class="stars">★★★★★</span></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ==================== BESTSELLERS CAROUSEL ==================== -->
+        <section class="section section-dark" id="bestsellers">
+            <div class="section-head reveal">
+                <span class="sec-no">02</span>
+                <span class="eyebrow">Most Loved</span>
+                <h2 class="section-title">The <em>Bestsellers</em></h2>
+            </div>
+
+            <div class="carousel reveal">
+                <input type="radio" name="slide" id="s1" checked>
+                <input type="radio" name="slide" id="s2">
+                <input type="radio" name="slide" id="s3">
+
+                <div class="carousel-track">
+                    <figure class="slide">
+                        <div class="slide-media">
+                            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=80"
+                                alt="ROYAL OUD NOIR">
+                        </div>
+                        <figcaption>
+                            <span class="slide-num">Nº 01</span>
+                            <span class="eyebrow">House Signature</span>
+                            <h3>Royal Oud Noir</h3>
+                            <p>Smoked oud layered over dark amber and a whisper of leather — a nocturnal masterpiece.
+                            </p>
+                            <b class="slide-price">$280.00</b>
+                            <a href="#collections" class="btn-ghost">Add to Bag</a>
+                        </figcaption>
+                    </figure>
+                    <figure class="slide">
+                        <div class="slide-media">
+                            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=900&q=80"
+                                alt="IMPERIAL ROSE AND AMBER">
+                        </div>
+                        <figcaption>
+                            <span class="slide-num">Nº 02</span>
+                            <span class="eyebrow">Floral Embrace</span>
+                            <h3>Imperial Rose &amp; Amber</h3>
+                            <p>Damask rose and warm amber woven into an imperial bouquet of rare French elegance.</p>
+                            <b class="slide-price">$320.00</b>
+                            <a href="#collections" class="btn-ghost">Add to Bag</a>
+                        </figcaption>
+                    </figure>
+                    <figure class="slide">
+                        <div class="slide-media">
+                            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80"
+                                alt="GOLDEN SANDS">
+                        </div>
+                        <figcaption>
+                            <span class="slide-num">Nº 03</span>
+                            <span class="eyebrow">Golden Hour</span>
+                            <h3>Golden Sands</h3>
+                            <p>Sun-drenched amber, saffron and vanilla — the warmth of a desert dusk in a single flacon.
+                            </p>
+                            <b class="slide-price">$270.00</b>
+                            <a href="#collections" class="btn-ghost">Add to Bag</a>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="carousel-dots">
+                    <label for="s1" title="Royal Oud Noir"></label>
+                    <label for="s2" title="Imperial Rose and Amber"></label>
+                    <label for="s3" title="Golden Sands"></label>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== OUR STORY ==================== -->
+        <section class="section story" id="story">
+            <div class="story-visual reveal">
+                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80"
+                    alt="Atelier craftsmanship">
+                <div class="story-stamp">
+                    <span>EST.</span>
+                    <b>2012</b>
+                </div>
+            </div>
+
+            <div class="story-content reveal">
+                <span class="sec-no">03</span>
+                <span class="eyebrow">The Legacy</span>
+                <h2 class="section-title">Our <em>Story</em></h2>
+                <p class="story-text">
+                    Founded with a vision to redefine luxury perfumery, UMAR ROYALE combines centuries-old French
+                    distillation artistry with modern elegance. Each bottle represents a masterpiece of rare botanicals,
+                    precision craftsmanship and sophisticated design.
+                </p>
+
+                <div class="story-points">
+                    <div class="story-point"><i class="fa-solid fa-seedling"></i>
+                        <div><b>Vegan &amp; Cruelty-Free</b><small>Certified and proudly animal-safe</small></div>
+                    </div>
+                    <div class="story-point"><i class="fa-solid fa-vial-circle-check"></i>
+                        <div><b>38% Extrait</b><small>Maximum concentration, all-day sillage</small></div>
+                    </div>
+                    <div class="story-point"><i class="fa-solid fa-truck-fast"></i>
+                        <div><b>Insured Shipping</b><small>Worldwide with free engraving over $500</small></div>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat"><span class="stat-num">120</span><span class="stat-label">Rare Ingredients</span>
+                    </div>
+                    <div class="stat"><span class="stat-num">28</span><span class="stat-label">Signature Scents</span>
+                    </div>
+                    <div class="stat"><span class="stat-num">14</span><span class="stat-label">Years of Craft</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- COLLECTIONS GRID SECTION -->
-    <section class="py-5 my-5" id="collections">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="hero-subtitle">CURATED SELECTION</span>
-                <h2 class="hero-title fs-1 mt-2">OUR SIGNATURE COLLECTIONS</h2>
+        <!-- ==================== TESTIMONIALS ==================== -->
+        <section class="section section-dark" id="testimonials">
+            <div class="section-head reveal">
+                <span class="sec-no">04</span>
+                <span class="eyebrow">Word of Mouth</span>
+                <h2 class="section-title">Connoisseurs <em>Speak</em></h2>
             </div>
 
-            <!-- Dynamic Product Grid (Mapped with script) -->
-            <div class="row g-4" id="productGrid">
-                <!-- JS se CMS products auto-render honge -->
-            </div>
-        </div>
-    </section>
+            <div class="quotes reveal">
+                <input type="radio" name="quote" id="q1" checked>
+                <input type="radio" name="quote" id="q2">
+                <input type="radio" name="quote" id="q3">
 
-    <!-- BESTSELLERS SECTION -->
-    <section class="py-5 bg-subtle" id="bestsellers">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="hero-subtitle">MOST LOVED</span>
-                <h2 class="hero-title fs-1 mt-2">OUR BESTSELLERS</h2>
-            </div>
-            
-            <div class="row g-4" id="bestsellersContainer">
-                <!-- Dynamic Bestseller Products Display Honge -->
-            </div>
-        </div>
-    </section>
-
-    <!-- OUR STORY SECTION -->
-    <section class="py-5 my-5" id="story">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow" alt="Our Story">
+                <div class="quotes-track">
+                    <blockquote class="quote">
+                        <i class="fa-solid fa-quote-left quote-mark"></i>
+                        <p>“Royal Oud Noir is the only scent I have worn in three years. It turns heads before I enter a
+                            room.”</p>
+                        <footer class="quote-author">
+                            <span class="avatar">A</span>
+                            <div><b>Amir Riaz</b><small>Collector, Dubai</small></div>
+                        </footer>
+                    </blockquote>
+                    <blockquote class="quote">
+                        <i class="fa-solid fa-quote-left quote-mark"></i>
+                        <p>“The concentration is unreal — one spray in the morning still lingers at midnight. True haute
+                            parfumerie.”</p>
+                        <footer class="quote-author">
+                            <span class="avatar">S</span>
+                            <div><b>Sophie Lambert</b><small>Editor, Paris</small></div>
+                        </footer>
+                    </blockquote>
+                    <blockquote class="quote">
+                        <i class="fa-solid fa-quote-left quote-mark"></i>
+                        <p>“Golden Sands has become my signature. It smells like warmth and wealth — utterly distinct.”
+                        </p>
+                        <footer class="quote-author">
+                            <span class="avatar">Y</span>
+                            <div><b>Yusuf Khan</b><small>Founder, London</small></div>
+                        </footer>
+                    </blockquote>
                 </div>
-                <div class="col-lg-6">
-                    <span class="hero-subtitle">THE LEGACY</span>
-                    <h2 class="hero-title fs-1 my-3">OUR STORY</h2>
-                    <p class="text-muted">
-                        Founded with a vision to redefine luxury perfumery, UMAR ROYALE combines centuries-old French distillation artistry with modern elegance. Each bottle represents a masterpiece of rare botanicals, precision craftsmanship, and sophisticated design.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="py-5 my-5 border-top border-subtle" id="contact">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="hero-subtitle">GET IN TOUCH</span>
-                <h2 class="hero-title fs-1 mt-2">CONTACT US</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <form id="contactForm" class="glass-card p-4">
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase">Your Name</label>
-                            <input type="text" class="form-control" placeholder="Enter your name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase">Your Email</label>
-                            <input type="email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase">Message</label>
-                            <textarea class="form-control" rows="4" placeholder="How can we assist you?" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-editorial-primary w-100">SEND MESSAGE</button>
-                    </form>
+                <div class="quotes-dots">
+                    <label for="q1"></label>
+                    <label for="q2"></label>
+                    <label for="q3"></label>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CART DRAWER -->
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="d-flex justify-content-between align-items-center pb-3 border-bottom border-subtle">
-            <h4 class="mb-0 fs-5">YOUR SHOPPING BAG</h4>
-            <button class="btn-icon fs-3" id="closeCartBtn">&times;</button>
-        </div>
-
-        <div class="cart-items-body py-3 overflow-auto" id="cartItemsContainer" style="max-height: 60vh;">
-            <!-- Cart Items Dynamic Render Honge -->
-        </div>
-
-        <div class="border-top border-subtle pt-3">
-            <div class="d-flex justify-content-between mb-3 fs-5">
-                <span>Subtotal:</span>
-                <span class="fw-bold gold-text" id="cartSubtotal">$0.00</span>
+        <!-- ==================== FAQ ==================== -->
+        <section class="section" id="faq">
+            <div class="section-head reveal">
+                <span class="sec-no">05</span>
+                <span class="eyebrow">Guidance</span>
+                <h2 class="section-title">Frequently <em>Asked</em></h2>
             </div>
-            <button class="btn-editorial-primary w-100" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal">PROCEED TO CHECKOUT</button>
-        </div>
-    </div>
 
-    <!-- CHECKOUT MODAL WITH COD & ONLINE PAYMENT -->
-    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header border-bottom">
-                    <h5 class="modal-title font-serif fw-bold" id="checkoutModalLabel">UMAR ROYALE — CHECKOUT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="faq-list reveal">
+                <details open>
+                    <summary>How long does a bottle last? <i class="fa-solid fa-plus"></i></summary>
+                    <p>Our 38% extrait concentration lasts 8–12 hours on skin and, with everyday wear, a 50ml flacon can
+                        exceed one year.</p>
+                </details>
+                <details>
+                    <summary>Do you ship internationally? <i class="fa-solid fa-plus"></i></summary>
+                    <p>Yes. We deliver worldwide via insured courier, with complimentary engraving on all orders above
+                        $500.</p>
+                </details>
+                <details>
+                    <summary>Is the collection tested on animals? <i class="fa-solid fa-plus"></i></summary>
+                    <p>Never. UMAR ROYALE is 100% cruelty-free, proudly vegan, and our base ingredients are sustainably
+                        sourced.</p>
+                </details>
+                <details>
+                    <summary>Can I commission a bespoke fragrance? <i class="fa-solid fa-plus"></i></summary>
+                    <p>Absolutely. Book a private composition session with our master perfumer — held in Paris or
+                        remotely by appointment.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT ==================== -->
+        <section class="section section-dark" id="contact">
+            <div class="section-head reveal">
+                <span class="sec-no">06</span>
+                <span class="eyebrow">Get in Touch</span>
+                <h2 class="section-title">Contact the <em>Maison</em></h2>
+            </div>
+
+            <div class="contact-wrap reveal">
+                <div class="contact-info">
+                    <div class="info-item"><i class="fa-solid fa-location-dot"></i>
+                        <div><b>Flagship Boutique</b><small>8 Rue Saint-Honoré, 75001 Paris</small></div>
+                    </div>
+                    <div class="info-item"><i class="fa-solid fa-phone"></i>
+                        <div><b>Concierge</b><small>+33 1 42 60 30 12</small></div>
+                    </div>
+                    <div class="info-item"><i class="fa-solid fa-envelope"></i>
+                        <div><b>Email</b><small>maison@umarroyale.paris</small></div>
+                    </div>
+                    <div class="info-item"><i class="fa-regular fa-clock"></i>
+                        <div><b>Atelier Hours</b><small>Mon–Sat · 10:00 — 19:00</small></div>
+                    </div>
                 </div>
-                <div class="modal-body p-4">
-                    <form id="checkoutForm">
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase">Full Name</label>
-                            <input type="text" id="custName" class="form-control" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase">Shipping Address</label>
-                            <textarea id="custAddress" class="form-control" rows="2" placeholder="Street address, City, Country" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase">Phone / Mobile</label>
-                            <input type="tel" id="custPhone" class="form-control" placeholder="+92 340 0085347" required>
-                        </div>
 
-                        <!-- PAYMENT METHOD SELECTION -->
-                        <div class="mb-3">
-                            <label class="form-label small text-uppercase fw-bold">Select Payment Method</label>
-                            <select id="payMethod" class="form-select" onchange="togglePaymentDetails(this.value)" required>
-                                <option value="COD">Cash on Delivery (COD)</option>
-                                <option value="JazzCash">JazzCash</option>
-                                <option value="EasyPaisa">EasyPaisa</option>
-                                <option value="NayaPay">NayaPay</option>
-                            </select>
-                        </div>
+                <form class="contact-form" action="#" method="get">
+                    <input type="text" name="name" placeholder="YOUR NAME" required>
+                    <input type="email" name="email" placeholder="YOUR EMAIL" required>
+                    <textarea name="message" rows="4" placeholder="YOUR MESSAGE" required></textarea>
+                    <button class="btn-gold w-100" type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-                        <!-- ONLINE PAYMENT DETAILS BOX -->
-                        <div id="onlinePayInfo" class="p-3 bg-light rounded border mb-3 d-none">
-                            <p class="small mb-1 text-muted">Please send the total amount to the account below:</p>
-                            <div class="fw-bold text-dark small" id="payAccountDetails">
-                                <!-- Account Details JavaScript se dynamic change hongi -->
-                            </div>
-                            <div class="mt-3">
-                                <label class="form-label small text-uppercase fw-bold text-danger">Transaction ID (TRX ID)</label>
-                                <input type="text" id="trxId" class="form-control" placeholder="Enter 11 or 12 digit TRX ID">
-                            </div>
-                        </div>
-
-                        <div class="border-top pt-3 mt-3 d-flex justify-content-between fs-5 fw-bold">
-                            <span>Total Pay:</span>
-                            <span class="gold-text" id="modalSubtotal">$0.00</span>
-                        </div>
-                        <button type="submit" class="btn-editorial-primary w-100 mt-3 py-2">CONFIRM ORDER</button>
-                    </form>
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#home" class="brand-title">UMAR <span>ROYALE</span></a>
+                <p>Haute Parfumerie — Paris. Crafting memory, one drop at a time.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- FOOTER -->
-    <footer class="py-4 text-center border-top border-subtle mt-5">
-        <p class="small text-muted mb-0">&copy; 2026 UMAR ROYALE — All Rights Reserved.</p>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="#collections">Collections</a>
+                <a href="#bestsellers">Bestsellers</a>
+                <a href="#story">Our Story</a>
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Atelier</h4>
+                <a href="#contact">Contact</a>
+                <a href="admin.html">CMS Access</a>
+                <a href="#collections">Gift Cards</a>
+                <a href="#faq">Shipping</a>
+            </div>
+
+            <div class="footer-col footer-news">
+                <h4>Newsletter</h4>
+                <p>Privileged previews, private compositions.</p>
+                <form class="news-form" action="#" method="get">
+                    <input type="email" placeholder="YOUR EMAIL" required>
+                    <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 UMAR ROYALE — All Rights Reserved · Crafted with pure HTML &amp; CSS, no
+            JavaScript.</p>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ==================== QUICK VIEW LIGHTBOXES (:target) ==================== -->
+    <div class="lightbox" id="lb1">
+        <div class="lightbox-card">
+            <a href="#collections" class="panel-close">&times;</a>
+            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80"
+                alt="ROYAL OUD NOIR">
+            <div class="lightbox-meta">
+                <span class="eyebrow">Eau de Parfum</span>
+                <h3>Royal Oud Noir</h3>
+                <p>A composition of smoke, leather and amber — nocturnal, magnetic, unforgettable.</p>
+                <b class="gold-text">$280.00</b>
+                <label for="cartChk" class="btn-gold">Add to Bag</label>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" id="lb2">
+        <div class="lightbox-card">
+            <a href="#collections" class="panel-close">&times;</a>
+            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=700&q=80"
+                alt="IMPERIAL ROSE AND AMBER">
+            <div class="lightbox-meta">
+                <span class="eyebrow">Extrait de Parfum</span>
+                <h3>Imperial Rose &amp; Amber</h3>
+                <p>Damask rose and warm amber woven into an imperial bouquet of rare French elegance.</p>
+                <b class="gold-text">$320.00</b>
+                <label for="cartChk" class="btn-gold">Add to Bag</label>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" id="lb3">
+        <div class="lightbox-card">
+            <a href="#collections" class="panel-close">&times;</a>
+            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
+                alt="SILVER MIST">
+            <div class="lightbox-meta">
+                <span class="eyebrow">Eau de Toilette</span>
+                <h3>Silver Mist</h3>
+                <p>A crisp, airy eau de toilette kissed with bergamot, musk and cool silver florals.</p>
+                <b class="gold-text">$150.00</b>
+                <label for="cartChk" class="btn-gold">Add to Bag</label>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" id="lb4">
+        <div class="lightbox-card">
+            <a href="#collections" class="panel-close">&times;</a>
+            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80"
+                alt="GOLDEN SANDS">
+            <div class="lightbox-meta">
+                <span class="eyebrow">Eau de Parfum</span>
+                <h3>Golden Sands</h3>
+                <p>Sun-drenched amber, saffron and vanilla — the warmth of a desert dusk in a single flacon.</p>
+                <b class="gold-text">$270.00</b>
+                <label for="cartChk" class="btn-gold">Add to Bag</label>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" id="lb5">
+        <div class="lightbox-card">
+            <a href="#collections" class="panel-close">&times;</a>
+            <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=700&q=80"
+                alt="VELVET AMBER INTENSE">
+            <div class="lightbox-meta">
+                <span class="eyebrow">Eau de Parfum</span>
+                <h3>Velvet Amber Intense</h3>
+                <p>Velvety amber fused with tonka and incense — a soft, persistent trail of pure warmth.</p>
+                <b class="gold-text">$185.00</b>
+                <label for="cartChk" class="btn-gold">Add to Bag</label>
+            </div>
+        </div>
+    </div>
+    <div class="lightbox" id="lb6">
+        <div class="lightbox-card">
+            <a href="#collections" class="panel-close">&times;</a>
+            <img src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=700&q=80"
+                alt="ROSE DE TAIF NOIR">
+            <div class="lightbox-meta">
+                <span class="eyebrow">Perfume Oil</span>
+                <h3>Rose de Taïf Noir</h3>
+                <p>Hand-harvested Taif roses deepened with black agarwood — romantic, mysterious, rare.</p>
+                <b class="gold-text">$150.00</b>
+                <label for="cartChk" class="btn-gold">Add to Bag</label>
+            </div>
+        </div>
+    </div>
 
-    <!-- ENGINE SCRIPT -->
-    <script>
-        const initialProducts = [
-            {
-                id: "prod-1",
-                name: "ROYAL OUD NOIR",
-                category: "EAU DE PARFUM",
-                price: 280.00,
-                is_bestseller: true,
-                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                id: "prod-2",
-                name: "IMPERIAL ROSE & AMBER",
-                category: "EXTRAIT DE PARFUM",
-                price: 320.00,
-                is_bestseller: true,
-                image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                id: "prod-3",
-                name: "SILVER MIST",
-                category: "EAU DE TOILETTE",
-                price: 150.00,
-                is_bestseller: false,
-                image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80"
-            },
-            {
-                id: "prod-4",
-                name: "GOLDEN SANDS",
-                category: "EAU DE PARFUM",
-                price: 270.00,
-                is_bestseller: false,
-                image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
-            }
-        ];
+    <!-- Back to top -->
+    <a href="#home" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
 
-        const PAYMENT_ACCOUNTS = {
-            JazzCash: "JazzCash: 0309 2230740 (Title: Saad Bin Riaz)",
-            EasyPaisa: "EasyPaisa: 0340 0085347 (Title: Saad Bin Riaz)",
-            NayaPay: "NayaPay ID: 03092231525 / @saadbinriaz"
-        };
-
-        function getProducts() {
-            const stored = localStorage.getItem('umar_royale_products');
-            if (!stored) {
-                localStorage.setItem('umar_royale_products', JSON.stringify(initialProducts));
-                return initialProducts;
-            }
-            return JSON.parse(stored);
-        }
-
-        function getCart() {
-            return JSON.parse(localStorage.getItem('umar_royale_cart')) || [];
-        }
-
-        function saveCart(cart) {
-            localStorage.setItem('umar_royale_cart', JSON.stringify(cart));
-            updateCartUI();
-        }
-
-        function renderProducts() {
-            const grid = document.getElementById('productGrid');
-            const bestsellersContainer = document.getElementById('bestsellersContainer');
-            
-            const products = getProducts();
-
-            if (grid) {
-                if (products.length === 0) {
-                    grid.innerHTML = '<div class="col-12 text-center py-5"><h4>No products available in store.</h4></div>';
-                } else {
-                    grid.innerHTML = products.map(prod => `
-                        <div class="col-md-6 col-lg-3">
-                            <div class="product-card glass-card text-center p-3 h-100 d-flex flex-column justify-content-between">
-                                <div class="position-relative overflow-hidden mb-3">
-                                    <img src="${prod.image}" class="w-100 product-img" alt="${prod.name}" style="height:240px; object-fit:cover;">
-                                </div>
-                                <div>
-                                    <span class="text-muted small text-uppercase letter-spacing">${prod.category}</span>
-                                    <h3 class="fs-5 mt-1">${prod.name}</h3>
-                                    <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
-                                </div>
-                                <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            }
-
-            if (bestsellersContainer) {
-                const bestsellers = products.filter(p => p.is_bestseller);
-                bestsellersContainer.innerHTML = bestsellers.map(prod => `
-                    <div class="col-md-6 col-lg-4">
-                        <div class="product-card glass-card text-center p-4">
-                            <img src="${prod.image}" class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="${prod.name}">
-                            <span class="badge bg-warning text-dark mb-2">★ BESTSELLER</span>
-                            <h3 class="fs-4">${prod.name}</h3>
-                            <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
-                            <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        window.addToCart = function (productId) {
-            const products = getProducts();
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            let cart = getCart();
-            const existing = cart.find(item => item.id === productId);
-
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ ...product, qty: 1 });
-            }
-
-            saveCart(cart);
-            document.getElementById('cartDrawer')?.classList.add('open');
-        };
-
-        window.removeFromCart = function (productId) {
-            let cart = getCart().filter(item => item.id !== productId);
-            saveCart(cart);
-        };
-
-        function updateCartUI() {
-            const cart = getCart();
-            const cartCountBadge = document.getElementById('cartCount');
-            const cartContainer = document.getElementById('cartItemsContainer');
-            const subtotalEl = document.getElementById('cartSubtotal');
-
-            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
-            if (cartCountBadge) cartCountBadge.textContent = totalQty;
-
-            if (cartContainer) {
-                if (cart.length === 0) {
-                    cartContainer.innerHTML = '<p class="text-center text-muted py-4">Your shopping bag is currently empty.</p>';
-                } else {
-                    cartContainer.innerHTML = cart.map(item => `
-                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
-                            <img src="${item.image}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
-                            <div class="flex-grow-1 ms-3 text-start">
-                                <h6 class="mb-0 fs-6">${item.name}</h6>
-                                <small class="text-muted">Qty: ${item.qty} × $${item.price}</small>
-                            </div>
-                            <div class="text-end">
-                                <div class="fw-bold gold-text">$${(item.price * item.qty).toFixed(2)}</div>
-                                <button class="btn btn-sm text-danger p-0 border-0" onclick="removeFromCart('${item.id}')">&times; Remove</button>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            }
-
-            if (subtotalEl) {
-                const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-                subtotalEl.textContent = `$${totalAmount.toFixed(2)}`;
-            }
-        }
-
-        window.togglePaymentDetails = function(method) {
-            const infoBox = document.getElementById('onlinePayInfo');
-            const detailsDiv = document.getElementById('payAccountDetails');
-            const trxInput = document.getElementById('trxId');
-
-            if (!infoBox) return;
-
-            if (method === 'COD') {
-                infoBox.classList.add('d-none');
-                if (trxInput) trxInput.removeAttribute('required');
-            } else {
-                infoBox.classList.remove('d-none');
-                if (detailsDiv) detailsDiv.innerHTML = `<i class="fa-solid fa-building-columns me-1"></i> ${PAYMENT_ACCOUNTS[method] || ''}`;
-                if (trxInput) trxInput.setAttribute('required', 'true');
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            updateCartUI();
-
-            document.getElementById('themeToggle')?.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', nextTheme);
-                const icon = document.getElementById('themeIcon');
-                if (icon) icon.className = nextTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-            });
-
-            document.getElementById('cartToggleBtn')?.addEventListener('click', () => {
-                document.getElementById('cartDrawer')?.classList.add('open');
-            });
-            document.getElementById('closeCartBtn')?.addEventListener('click', () => {
-                document.getElementById('cartDrawer')?.classList.remove('open');
-            });
-
-            document.getElementById('searchToggleBtn')?.addEventListener('click', () => {
-                document.getElementById('searchOverlay')?.classList.add('open');
-            });
-            document.getElementById('closeSearchBtn')?.addEventListener('click', () => {
-                document.getElementById('searchOverlay')?.classList.remove('open');
-            });
-
-            document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-                const subtotal = document.getElementById('cartSubtotal')?.textContent || '$0.00';
-                const modalSubtotal = document.getElementById('modalSubtotal');
-                if (modalSubtotal) modalSubtotal.textContent = subtotal;
-            });
-
-            document.getElementById('contactForm')?.addEventListener('submit', function (e) {
-                e.preventDefault();
-                alert('Thank you for contacting UMAR ROYALE. We will get back to you shortly!');
-                this.reset();
-            });
-
-            document.getElementById('checkoutForm')?.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const cart = getCart();
-                if (cart.length === 0) {
-                    alert("Aapka cart khali hai!");
-                    return;
-                }
-
-                const name = document.getElementById('custName')?.value || '';
-                const address = document.getElementById('custAddress')?.value || '';
-                const phone = document.getElementById('custPhone')?.value || '';
-                const method = document.getElementById('payMethod')?.value || 'COD';
-                const trxId = document.getElementById('trxId')?.value || 'N/A';
-                const totalAmount = document.getElementById('modalSubtotal')?.textContent || '$0.00';
-                const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
-
-                const newOrder = {
-                    orderId: orderId,
-                    date: new Date().toLocaleString(),
-                    customer: { name, address, phone },
-                    payment: { method, trxId },
-                    items: cart,
-                    total: totalAmount,
-                    status: 'Pending'
-                };
-
-                let orders = JSON.parse(localStorage.getItem('umar_royale_orders')) || [];
-                orders.unshift(newOrder);
-                localStorage.setItem('umar_royale_orders', JSON.stringify(orders));
-
-                let itemsText = cart.map(item => `• ${item.name} (x${item.qty})`).join('%0A');
-                let waMessage = `*NEW ORDER CONFIRMATION* 🛍️%0A%0A` +
-                    `*Order ID:* ${orderId}%0A` +
-                    `*Name:* ${name}%0A` +
-                    `*Phone:* ${phone}%0A` +
-                    `*Address:* ${address}%0A%0A` +
-                    `*Items Ordered:*%0A${itemsText}%0A%0A` +
-                    `*Total Amount:* ${totalAmount}%0A` +
-                    `*Payment Method:* ${method}%0A`;
-
-                if (method !== 'COD') {
-                    waMessage += `*TRX ID:* ${trxId}%0A%0A⚠️ *Note:* Payment screenshot attach karein.`;
-                } else {
-                    waMessage += `📦 *Payment Mode:* Cash on Delivery`;
-                }
-
-                localStorage.removeItem('umar_royale_cart');
-                updateCartUI();
-                this.reset();
-                togglePaymentDetails('COD');
-
-                const modalEl = document.getElementById('checkoutModal');
-                if (modalEl && window.bootstrap) {
-                    const modal = bootstrap.Modal.getInstance(modalEl);
-                    if (modal) modal.hide();
-                }
-                document.getElementById('cartDrawer')?.classList.remove('open');
-
-                const targetWhatsAppNumber = "923400085347";
-                window.open(`https://wa.me/${targetWhatsAppNumber}?text=${waMessage}`, '_blank');
-            });
-        });
-    </script>
 </body>
 
 </html>
