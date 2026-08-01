@@ -1,27 +1,44 @@
 // ==========================================
-// 1. FIREBASE CONFIGURATION & INITIALIZATION
+// 1. DEFAULT PRODUCTS & CONFIGURATION
 // ==========================================
-// ⚠️ Firebase Console se milli hui keys se replace karein
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "your-project-id.firebaseapp.com",
-    databaseURL: "https://your-project-id-default-rtdb.firebaseio.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project-id.appspot.com",
-    messagingSenderId: "1234567890",
-    appId: "YOUR_APP_ID"
-};
+const initialProducts = [
+    {
+        id: "prod-1",
+        name: "ROYAL OUD NOIR",
+        category: "EAU DE PARFUM",
+        price: 280.00,
+        is_bestseller: true,
+        image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: "prod-2",
+        name: "IMPERIAL ROSE & AMBER",
+        category: "EXTRAIT DE PARFUM",
+        price: 320.00,
+        is_bestseller: true,
+        image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: "prod-3",
+        name: "SILVER MIST",
+        category: "EAU DE TOILETTE",
+        price: 150.00,
+        is_bestseller: false,
+        image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+        id: "prod-4",
+        name: "GOLDEN SANDS",
+        category: "EAU DE PARFUM",
+        price: 270.00,
+        is_bestseller: false,
+        image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+    }
+];
 
-// Initialize Firebase App
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-const db = firebase.database();
-
-// Global array for Products
 let globalProducts = [];
 
-// Account Details Config (WhatsApp / Online Payments)
+// Payment Account Details
 const PAYMENT_ACCOUNTS = {
     JazzCash: "JazzCash: 0340 0085347 (Title: Umar Bin Riaz)",
     EasyPaisa: "EasyPaisa: 0340 0085347 (Title: Umar Bin Riaz)",
@@ -29,57 +46,71 @@ const PAYMENT_ACCOUNTS = {
 };
 
 // ==========================================
-// 2. REALTIME PRODUCTS FETCH (CLOUD DATABASE)
+// 2. LOCAL DATA & STORE RENDER
 // ==========================================
-function listenForProductsFromCloud() {
-    // Realtime listener — database me jab bhi update hoga, har device par instantly change hoga
-    db.ref('products').on('value', (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-            // Firebase object ko Array me map kar rahe hain
-            globalProducts = Object.keys(data).map(key => ({
-                id: key,
-                ...data[key]
-            }));
-        } else {
-            globalProducts = [];
-        }
-        renderProducts();
-    });
+function loadProductsFromStorage() {
+    const stored = localStorage.getItem('umar_royale_products');
+    if (!stored) {
+        localStorage.setItem('umar_royale_products', JSON.stringify(initialProducts));
+        globalProducts = initialProducts;
+    } else {
+        globalProducts = JSON.parse(stored);
+    }
+    renderProducts();
 }
 
-// Store Grid HTML Rendering
 function renderProducts() {
     const grid = document.getElementById('productGrid');
-    if (!grid) return;
+    const bestsellersContainer = document.getElementById('bestsellersContainer');
 
-    if (globalProducts.length === 0) {
-        grid.innerHTML = '<div class="col-12 text-center py-5"><h4>No products available in store.</h4></div>';
-        return;
+    // Store Collections Grid
+    if (grid) {
+        if (globalProducts.length === 0) {
+            grid.innerHTML = '<div class="col-12 text-center py-5"><h4>No products available in store.</h4></div>';
+        } else {
+            grid.innerHTML = globalProducts.map(prod => `
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card glass-card text-center p-3 h-100 d-flex flex-column justify-content-between">
+                        <div class="position-relative overflow-hidden mb-3">
+                            <img src="${prod.image}" class="w-100 product-img" alt="${prod.name}" style="height:240px; object-fit:cover;">
+                        </div>
+                        <div>
+                            <span class="text-muted small text-uppercase letter-spacing">${prod.category || 'PARFUM'}</span>
+                            <h3 class="fs-5 mt-1">${prod.name}</h3>
+                            <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
+                        </div>
+                        <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
+                    </div>
+                </div>
+            `).join('');
+        }
     }
 
-    grid.innerHTML = globalProducts.map(prod => `
-        <div class="col-md-6 col-lg-4">
-            <div class="product-card glass-card">
-                <div class="position-relative overflow-hidden mb-3">
-                    <img src="${prod.image}" class="w-100 product-img" alt="${prod.name}" style="height:280px; object-fit:cover;">
-                    <button class="wishlist-btn position-absolute top-0 end-0 m-3 border-0 bg-transparent">
-                        <i class="fa-regular fa-heart fs-5"></i>
-                    </button>
+    // Bestseller Section Mapping
+    if (bestsellersContainer) {
+        const bestsellers = globalProducts.filter(p => p.is_bestseller);
+        if (bestsellers.length === 0) {
+            bestsellersContainer.innerHTML = '<div class="col-12 text-center py-3"><p class="text-muted">No bestsellers selected.</p></div>';
+        } else {
+            bestsellersContainer.innerHTML = bestsellers.map(prod => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card glass-card text-center p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <img src="${prod.image}" class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="${prod.name}">
+                            <span class="badge bg-warning text-dark mb-2">★ BESTSELLER</span>
+                            <h3 class="fs-4">${prod.name}</h3>
+                            <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
+                        </div>
+                        <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <span class="text-muted small text-uppercase letter-spacing">${prod.category || 'PARFUM'}</span>
-                    <h3 class="fs-4 mt-1">${prod.name}</h3>
-                    <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
-                    <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
-                </div>
-            </div>
-        </div>
-    `).join('');
+            `).join('');
+        }
+    }
 }
 
 // ==========================================
-// 3. CART FUNCTIONS
+// 3. CART SYSTEM
 // ==========================================
 function getCart() {
     return JSON.parse(localStorage.getItem('umar_royale_cart')) || [];
@@ -148,9 +179,9 @@ function updateCartUI() {
 }
 
 // ==========================================
-// 4. PAYMENT & CHECKOUT FUNCTIONS
+// 4. CHECKOUT & PAYMENT METHOD TOGGLE
 // ==========================================
-function togglePaymentDetails(method) {
+window.togglePaymentDetails = function(method) {
     const infoBox = document.getElementById('onlinePayInfo');
     const detailsDiv = document.getElementById('payAccountDetails');
     const trxInput = document.getElementById('trxId');
@@ -165,17 +196,16 @@ function togglePaymentDetails(method) {
         if (detailsDiv) detailsDiv.innerHTML = `<i class="fa-solid fa-building-columns me-1"></i> ${PAYMENT_ACCOUNTS[method] || ''}`;
         if (trxInput) trxInput.setAttribute('required', 'true');
     }
-}
+};
 
 // ==========================================
-// 5. DOM CONTENT LOADED (EVENT LISTENERS)
+// 5. INITIALIZATION & EVENT LISTENERS
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Live products sync start karein
-    listenForProductsFromCloud();
+    loadProductsFromStorage();
     updateCartUI();
 
-    // Theme Toggle
+    // Theme Switcher
     document.getElementById('themeToggle')?.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -184,12 +214,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (icon) icon.className = nextTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
     });
 
-    // Drawers & Search Modals
+    // Cart Drawer Toggle
     document.getElementById('cartToggleBtn')?.addEventListener('click', () => {
         document.getElementById('cartDrawer')?.classList.add('open');
     });
     document.getElementById('closeCartBtn')?.addEventListener('click', () => {
         document.getElementById('cartDrawer')?.classList.remove('open');
+    });
+
+    // Search Drawer Toggle
+    document.getElementById('searchToggleBtn')?.addEventListener('click', () => {
+        document.getElementById('searchOverlay')?.classList.add('open');
+    });
+    document.getElementById('closeSearchBtn')?.addEventListener('click', () => {
+        document.getElementById('searchOverlay')?.classList.remove('open');
+    });
+
+    // Dynamic Payment Switch Listener
+    document.getElementById('payMethod')?.addEventListener('change', function() {
+        togglePaymentDetails(this.value);
     });
 
     document.getElementById('checkoutBtn')?.addEventListener('click', () => {
@@ -198,7 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalSubtotal) modalSubtotal.textContent = subtotal;
     });
 
-    // Unified Checkout Submit (Cloud CMS Backup + WhatsApp Redirection)
+    // Contact Form
+    document.getElementById('contactForm')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Thank you for contacting UMAR ROYALE. We will get back to you shortly!');
+        this.reset();
+    });
+
+    // Checkout Form (WhatsApp Integration + Local Storage Backup)
     document.getElementById('checkoutForm')?.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -216,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalAmount = document.getElementById('modalSubtotal')?.textContent || '$0.00';
         const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
 
-        // Save order locally for CMS
+        // Save order locally for Admin CMS
         const newOrder = {
             orderId, date: new Date().toLocaleString(),
             customer: { name, address, phone },
@@ -240,12 +290,12 @@ document.addEventListener('DOMContentLoaded', () => {
             `*Payment Method:* ${method}%0A`;
 
         if (method !== 'COD') {
-            waMessage += `*TRX ID:* ${trxId}%0A%0A⚠️ *Note:* Payment screenshot niche attach kar raha/rahi hoon.`;
+            waMessage += `*TRX ID:* ${trxId}%0A%0A⚠️ *Note:* Payment screenshot attach kar dein.`;
         } else {
             waMessage += `📦 *Payment Mode:* Cash on Delivery`;
         }
 
-        // Reset
+        // Reset Cart State
         localStorage.removeItem('umar_royale_cart');
         updateCartUI();
         this.reset();
@@ -258,7 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.getElementById('cartDrawer')?.classList.remove('open');
 
-        // Redirect to WhatsApp
-        window.open(`https://wa.me/923092230740?text=${waMessage}`, '_blank');
+        // Redirect to WhatsApp Number
+        const whatsappNumber = "923400085347";
+        window.open(`https://wa.me/${whatsappNumber}?text=${waMessage}`, '_blank');
     });
 });

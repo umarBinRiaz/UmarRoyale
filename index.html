@@ -10,9 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome & Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,8 +27,7 @@
         <div class="container px-4">
             <a class="navbar-brand brand-title" href="#home">UMAR ROYALE</a>
 
-            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navMenu">
+            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -76,8 +73,7 @@
                     <span class="hero-subtitle">HAUTE PARFUMERIE · PARIS</span>
                     <h1 class="hero-title my-3">ESSENCE OF UNRIVALED PRESTIGE</h1>
                     <p class="hero-description mb-4">
-                        Handcrafted, rare botanical fragrances distilled to perfection. Designed for those who command
-                        distinction effortlessly.
+                        Handcrafted, rare botanical fragrances distilled to perfection. Designed for those who command distinction effortlessly.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="#collections" class="btn-editorial-primary">EXPLORE COLLECTION</a>
@@ -86,8 +82,7 @@
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="hero-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80"
-                            alt="Umar Royale Perfume" class="img-fluid hero-bottle-img">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80" alt="Umar Royale Perfume" class="img-fluid hero-bottle-img">
                     </div>
                 </div>
             </div>
@@ -102,7 +97,7 @@
                 <h2 class="hero-title fs-1 mt-2">OUR SIGNATURE COLLECTIONS</h2>
             </div>
 
-            <!-- Dynamic Product Grid -->
+            <!-- Dynamic Product Grid (Mapped with script) -->
             <div class="row g-4" id="productGrid">
                 <!-- JS se CMS products auto-render honge -->
             </div>
@@ -116,25 +111,9 @@
                 <span class="hero-subtitle">MOST LOVED</span>
                 <h2 class="hero-title fs-1 mt-2">OUR BESTSELLERS</h2>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="product-card glass-card text-center p-4">
-                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
-                            class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="Royal Oud">
-                        <span class="badge bg-warning text-dark mb-2">★ BESTSELLER</span>
-                        <h3 class="fs-4">ROYAL OUD NOIR</h3>
-                        <p class="gold-text fw-semibold fs-5 my-2">$280.00</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="product-card glass-card text-center p-4">
-                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80"
-                            class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="Imperial Rose">
-                        <span class="badge bg-warning text-dark mb-2">★ BESTSELLER</span>
-                        <h3 class="fs-4">IMPERIAL ROSE & AMBER</h3>
-                        <p class="gold-text fw-semibold fs-5 my-2">$320.00</p>
-                    </div>
-                </div>
+            
+            <div class="row g-4" id="bestsellersContainer">
+                <!-- Dynamic Bestseller Products Display Honge -->
             </div>
         </div>
     </section>
@@ -144,16 +123,13 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
-                        class="img-fluid rounded shadow" alt="Our Story">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow" alt="Our Story">
                 </div>
                 <div class="col-lg-6">
                     <span class="hero-subtitle">THE LEGACY</span>
                     <h2 class="hero-title fs-1 my-3">OUR STORY</h2>
                     <p class="text-muted">
-                        Founded with a vision to redefine luxury perfumery, UMAR ROYALE combines centuries-old French
-                        distillation artistry with modern elegance. Each bottle represents a masterpiece of rare
-                        botanicals, precision craftsmanship, and sophisticated design.
+                        Founded with a vision to redefine luxury perfumery, UMAR ROYALE combines centuries-old French distillation artistry with modern elegance. Each bottle represents a masterpiece of rare botanicals, precision craftsmanship, and sophisticated design.
                     </p>
                 </div>
             </div>
@@ -180,8 +156,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label small text-uppercase">Message</label>
-                            <textarea class="form-control" rows="4" placeholder="How can we assist you?"
-                                required></textarea>
+                            <textarea class="form-control" rows="4" placeholder="How can we assist you?" required></textarea>
                         </div>
                         <button type="submit" class="btn-editorial-primary w-100">SEND MESSAGE</button>
                     </form>
@@ -206,10 +181,10 @@
                 <span>Subtotal:</span>
                 <span class="fw-bold gold-text" id="cartSubtotal">$0.00</span>
             </div>
-            <button class="btn-editorial-primary w-100" id="checkoutBtn" data-bs-toggle="modal"
-                data-bs-target="#checkoutModal">PROCEED TO CHECKOUT</button>
+            <button class="btn-editorial-primary w-100" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal">PROCEED TO CHECKOUT</button>
         </div>
     </div>
+
     <!-- CHECKOUT MODAL WITH COD & ONLINE PAYMENT -->
     <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -222,25 +197,21 @@
                     <form id="checkoutForm">
                         <div class="mb-3">
                             <label class="form-label small text-uppercase">Full Name</label>
-                            <input type="text" id="custName" class="form-control" placeholder="Enter your full name"
-                                required>
+                            <input type="text" id="custName" class="form-control" placeholder="Enter your full name" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label small text-uppercase">Shipping Address</label>
-                            <textarea id="custAddress" class="form-control" rows="2"
-                                placeholder="Street address, City, Country" required></textarea>
+                            <textarea id="custAddress" class="form-control" rows="2" placeholder="Street address, City, Country" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label small text-uppercase">Phone / Mobile</label>
-                            <input type="tel" id="custPhone" class="form-control" placeholder="+92 340 0085347"
-                                required>
+                            <input type="tel" id="custPhone" class="form-control" placeholder="+92 340 0085347" required>
                         </div>
 
                         <!-- PAYMENT METHOD SELECTION -->
                         <div class="mb-3">
                             <label class="form-label small text-uppercase fw-bold">Select Payment Method</label>
-                            <select id="payMethod" class="form-select" onchange="togglePaymentDetails(this.value)"
-                                required>
+                            <select id="payMethod" class="form-select" onchange="togglePaymentDetails(this.value)" required>
                                 <option value="COD">Cash on Delivery (COD)</option>
                                 <option value="JazzCash">JazzCash</option>
                                 <option value="EasyPaisa">EasyPaisa</option>
@@ -255,10 +226,8 @@
                                 <!-- Account Details JavaScript se dynamic change hongi -->
                             </div>
                             <div class="mt-3">
-                                <label class="form-label small text-uppercase fw-bold text-danger">Transaction ID (TRX
-                                    ID)</label>
-                                <input type="text" id="trxId" class="form-control"
-                                    placeholder="Enter 11 or 12 digit TRX ID">
+                                <label class="form-label small text-uppercase fw-bold text-danger">Transaction ID (TRX ID)</label>
+                                <input type="text" id="trxId" class="form-control" placeholder="Enter 11 or 12 digit TRX ID">
                             </div>
                         </div>
 
@@ -272,6 +241,7 @@
             </div>
         </div>
     </div>
+
     <!-- FOOTER -->
     <footer class="py-4 text-center border-top border-subtle mt-5">
         <p class="small text-muted mb-0">&copy; 2026 UMAR ROYALE — All Rights Reserved.</p>
@@ -282,15 +252,13 @@
 
     <!-- ENGINE SCRIPT -->
     <script>
-        // ==========================================
-        // 1. INITIAL DATA & CONFIGURATION
-        // ==========================================
         const initialProducts = [
             {
                 id: "prod-1",
                 name: "ROYAL OUD NOIR",
                 category: "EAU DE PARFUM",
                 price: 280.00,
+                is_bestseller: true,
                 image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
             },
             {
@@ -298,7 +266,24 @@
                 name: "IMPERIAL ROSE & AMBER",
                 category: "EXTRAIT DE PARFUM",
                 price: 320.00,
+                is_bestseller: true,
                 image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: "prod-3",
+                name: "SILVER MIST",
+                category: "EAU DE TOILETTE",
+                price: 150.00,
+                is_bestseller: false,
+                image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: "prod-4",
+                name: "GOLDEN SANDS",
+                category: "EAU DE PARFUM",
+                price: 270.00,
+                is_bestseller: false,
+                image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
             }
         ];
 
@@ -308,9 +293,6 @@
             NayaPay: "NayaPay ID: 03092231525 / @saadbinriaz"
         };
 
-        // ==========================================
-        // 2. HELPER & LOCAL STORAGE FUNCTIONS
-        // ==========================================
         function getProducts() {
             const stored = localStorage.getItem('umar_royale_products');
             if (!stored) {
@@ -329,37 +311,48 @@
             updateCartUI();
         }
 
-        // ==========================================
-        // 3. UI RENDERING & CART ACTIONS
-        // ==========================================
         function renderProducts() {
             const grid = document.getElementById('productGrid');
-            if (!grid) return;
+            const bestsellersContainer = document.getElementById('bestsellersContainer');
+            
             const products = getProducts();
 
-            if (products.length === 0) {
-                grid.innerHTML = '<div class="col-12 text-center py-5"><h4>No products available in store.</h4></div>';
-                return;
+            if (grid) {
+                if (products.length === 0) {
+                    grid.innerHTML = '<div class="col-12 text-center py-5"><h4>No products available in store.</h4></div>';
+                } else {
+                    grid.innerHTML = products.map(prod => `
+                        <div class="col-md-6 col-lg-3">
+                            <div class="product-card glass-card text-center p-3 h-100 d-flex flex-column justify-content-between">
+                                <div class="position-relative overflow-hidden mb-3">
+                                    <img src="${prod.image}" class="w-100 product-img" alt="${prod.name}" style="height:240px; object-fit:cover;">
+                                </div>
+                                <div>
+                                    <span class="text-muted small text-uppercase letter-spacing">${prod.category}</span>
+                                    <h3 class="fs-5 mt-1">${prod.name}</h3>
+                                    <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
+                                </div>
+                                <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
             }
 
-            grid.innerHTML = products.map(prod => `
-        <div class="col-md-6 col-lg-4">
-            <div class="product-card glass-card">
-                <div class="position-relative overflow-hidden mb-3">
-                    <img src="${prod.image}" class="w-100 product-img" alt="${prod.name}" style="height:280px; object-fit:cover;">
-                    <button class="wishlist-btn position-absolute top-0 end-0 m-3 border-0 bg-transparent">
-                        <i class="fa-regular fa-heart fs-5"></i>
-                    </button>
-                </div>
-                <div class="text-center">
-                    <span class="text-muted small text-uppercase letter-spacing">${prod.category}</span>
-                    <h3 class="fs-4 mt-1">${prod.name}</h3>
-                    <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
-                    <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
-                </div>
-            </div>
-        </div>
-    `).join('');
+            if (bestsellersContainer) {
+                const bestsellers = products.filter(p => p.is_bestseller);
+                bestsellersContainer.innerHTML = bestsellers.map(prod => `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="product-card glass-card text-center p-4">
+                            <img src="${prod.image}" class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="${prod.name}">
+                            <span class="badge bg-warning text-dark mb-2">★ BESTSELLER</span>
+                            <h3 class="fs-4">${prod.name}</h3>
+                            <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
+                            <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
         }
 
         window.addToCart = function (productId) {
@@ -399,18 +392,18 @@
                     cartContainer.innerHTML = '<p class="text-center text-muted py-4">Your shopping bag is currently empty.</p>';
                 } else {
                     cartContainer.innerHTML = cart.map(item => `
-                <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
-                    <img src="${item.image}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
-                    <div class="flex-grow-1 ms-3 text-start">
-                        <h6 class="mb-0 fs-6">${item.name}</h6>
-                        <small class="text-muted">Qty: ${item.qty} × $${item.price}</small>
-                    </div>
-                    <div class="text-end">
-                        <div class="fw-bold gold-text">$${(item.price * item.qty).toFixed(2)}</div>
-                        <button class="btn btn-sm text-danger p-0 border-0" onclick="removeFromCart('${item.id}')">&times; Remove</button>
-                    </div>
-                </div>
-            `).join('');
+                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
+                            <img src="${item.image}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
+                            <div class="flex-grow-1 ms-3 text-start">
+                                <h6 class="mb-0 fs-6">${item.name}</h6>
+                                <small class="text-muted">Qty: ${item.qty} × $${item.price}</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold gold-text">$${(item.price * item.qty).toFixed(2)}</div>
+                                <button class="btn btn-sm text-danger p-0 border-0" onclick="removeFromCart('${item.id}')">&times; Remove</button>
+                            </div>
+                        </div>
+                    `).join('');
                 }
             }
 
@@ -420,10 +413,7 @@
             }
         }
 
-        // ==========================================
-        // 4. PAYMENT TOGGLE LOGIC
-        // ==========================================
-        function togglePaymentDetails(method) {
+        window.togglePaymentDetails = function(method) {
             const infoBox = document.getElementById('onlinePayInfo');
             const detailsDiv = document.getElementById('payAccountDetails');
             const trxInput = document.getElementById('trxId');
@@ -438,16 +428,12 @@
                 if (detailsDiv) detailsDiv.innerHTML = `<i class="fa-solid fa-building-columns me-1"></i> ${PAYMENT_ACCOUNTS[method] || ''}`;
                 if (trxInput) trxInput.setAttribute('required', 'true');
             }
-        }
+        };
 
-        // ==========================================
-        // 5. DOM CONTENT LOADED INITIALIZATION
-        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
             updateCartUI();
 
-            // Theme Switcher
             document.getElementById('themeToggle')?.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -456,7 +442,6 @@
                 if (icon) icon.className = nextTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
             });
 
-            // Drawer & Overlay Controls
             document.getElementById('cartToggleBtn')?.addEventListener('click', () => {
                 document.getElementById('cartDrawer')?.classList.add('open');
             });
@@ -471,21 +456,18 @@
                 document.getElementById('searchOverlay')?.classList.remove('open');
             });
 
-            // Modal Subtotal Sync
             document.getElementById('checkoutBtn')?.addEventListener('click', () => {
                 const subtotal = document.getElementById('cartSubtotal')?.textContent || '$0.00';
                 const modalSubtotal = document.getElementById('modalSubtotal');
                 if (modalSubtotal) modalSubtotal.textContent = subtotal;
             });
 
-            // Contact Form Demo Submit
             document.getElementById('contactForm')?.addEventListener('submit', function (e) {
                 e.preventDefault();
                 alert('Thank you for contacting UMAR ROYALE. We will get back to you shortly!');
                 this.reset();
             });
 
-            // Unified Checkout Submission (CMS Save + WhatsApp Redirection)
             document.getElementById('checkoutForm')?.addEventListener('submit', function (e) {
                 e.preventDefault();
 
@@ -500,10 +482,9 @@
                 const phone = document.getElementById('custPhone')?.value || '';
                 const method = document.getElementById('payMethod')?.value || 'COD';
                 const trxId = document.getElementById('trxId')?.value || 'N/A';
-                const totalAmount = document.getElementById('modalSubtotal')?.textContent || document.getElementById('cartSubtotal')?.textContent || '$0.00';
+                const totalAmount = document.getElementById('modalSubtotal')?.textContent || '$0.00';
                 const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
 
-                // Save to CMS LocalStorage
                 const newOrder = {
                     orderId: orderId,
                     date: new Date().toLocaleString(),
@@ -518,7 +499,6 @@
                 orders.unshift(newOrder);
                 localStorage.setItem('umar_royale_orders', JSON.stringify(orders));
 
-                // Construct WhatsApp Message
                 let itemsText = cart.map(item => `• ${item.name} (x${item.qty})`).join('%0A');
                 let waMessage = `*NEW ORDER CONFIRMATION* 🛍️%0A%0A` +
                     `*Order ID:* ${orderId}%0A` +
@@ -530,18 +510,16 @@
                     `*Payment Method:* ${method}%0A`;
 
                 if (method !== 'COD') {
-                    waMessage += `*TRX ID:* ${trxId}%0A%0A⚠️ *Note:* Payment screenshot niche attach kar raha/rahi hoon.`;
+                    waMessage += `*TRX ID:* ${trxId}%0A%0A⚠️ *Note:* Payment screenshot attach karein.`;
                 } else {
                     waMessage += `📦 *Payment Mode:* Cash on Delivery`;
                 }
 
-                // Clear Cart & Reset Form
                 localStorage.removeItem('umar_royale_cart');
                 updateCartUI();
                 this.reset();
                 togglePaymentDetails('COD');
 
-                // Close UI Overlays/Modals
                 const modalEl = document.getElementById('checkoutModal');
                 if (modalEl && window.bootstrap) {
                     const modal = bootstrap.Modal.getInstance(modalEl);
@@ -549,17 +527,11 @@
                 }
                 document.getElementById('cartDrawer')?.classList.remove('open');
 
-                // Redirect to WhatsApp
-                const targetWhatsAppNumber = "923092230740";
+                const targetWhatsAppNumber = "923400085347";
                 window.open(`https://wa.me/${targetWhatsAppNumber}?text=${waMessage}`, '_blank');
             });
         });
     </script>
-    <!-- Firebase App and Database SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    <script src="main.js"></script>
 </body>
-
 
 </html>
