@@ -1,4 +1,4 @@
-// ==========================================
+﻿// ==========================================
 // 1. DEFAULT PRODUCTS & CONFIGURATION
 // ==========================================
 const initialProducts = [
@@ -97,7 +97,7 @@ function renderProducts() {
                     <div class="product-card glass-card text-center p-4 h-100 d-flex flex-column justify-content-between">
                         <div>
                             <img src="${prod.image}" class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="${prod.name}">
-                            <span class="badge bg-warning text-dark mb-2">★ BESTSELLER</span>
+                            <span class="badge bg-warning text-dark mb-2">â˜… BESTSELLER</span>
                             <h3 class="fs-4">${prod.name}</h3>
                             <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
                         </div>
@@ -161,7 +161,7 @@ function updateCartUI() {
                     <img src="${item.image}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
                     <div class="flex-grow-1 ms-3 text-start">
                         <h6 class="mb-0 fs-6">${item.name}</h6>
-                        <small class="text-muted">Qty: ${item.qty} × $${item.price}</small>
+                        <small class="text-muted">Qty: ${item.qty} Ã— $${item.price}</small>
                     </div>
                     <div class="text-end">
                         <div class="fw-bold gold-text">$${(item.price * item.qty).toFixed(2)}</div>
@@ -279,8 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('umar_royale_orders', JSON.stringify(orders));
 
         // WhatsApp Message Construction
-        let itemsText = cart.map(item => `• ${item.name} (x${item.qty})`).join('%0A');
-        let waMessage = `*NEW ORDER CONFIRMATION* 🛍️%0A%0A` +
+        let itemsText = cart.map(item => `â€¢ ${item.name} (x${item.qty})`).join('%0A');
+        let waMessage = `*NEW ORDER CONFIRMATION* ðŸ›ï¸%0A%0A` +
             `*Order ID:* ${orderId}%0A` +
             `*Name:* ${name}%0A` +
             `*Phone:* ${phone}%0A` +
@@ -290,9 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
             `*Payment Method:* ${method}%0A`;
 
         if (method !== 'COD') {
-            waMessage += `*TRX ID:* ${trxId}%0A%0A⚠️ *Note:* Payment screenshot attach kar dein.`;
+            waMessage += `*TRX ID:* ${trxId}%0A%0Aâš ï¸ *Note:* Payment screenshot attach kar dein.`;
         } else {
-            waMessage += `📦 *Payment Mode:* Cash on Delivery`;
+            waMessage += `ðŸ“¦ *Payment Mode:* Cash on Delivery`;
         }
 
         // Reset Cart State

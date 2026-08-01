@@ -1,178 +1,316 @@
-/* ==========================================
-   UMAR ROYALE - LocalStorage & UI Engine
-   ========================================== */
-
-// 8 Baseline Products matching your theme layout
-const DEFAULT_PRODUCTS = [
-    { 
-        id: "1", 
-        name: "ROYAL OUD NOIR", 
-        category: "EAU DE PARFUM", 
-        price: 280.00, 
-        stock_quantity: 12, 
-        is_bestseller: false,
-        image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: "2", 
-        name: "IMPERIAL ROSE & AMBER", 
-        category: "EXTRAIT DE PARFUM", 
-        price: 320.00, 
-        stock_quantity: 8, 
-        is_bestseller: false,
-        image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: "3", 
-        name: "VELVET AMBER INTENSE", 
-        category: "EAU DE PARFUM", 
-        price: 185.00, 
-        stock_quantity: 4, 
+﻿// ==========================================
+// 1. DEFAULT PRODUCTS & CONFIGURATION
+// ==========================================
+const initialProducts = [
+    {
+        id: "prod-1",
+        name: "ROYAL OUD NOIR",
+        category: "EAU DE PARFUM",
+        price: 280.00,
         is_bestseller: true,
-        image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80" 
+        image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
     },
-    { 
-        id: "4", 
-        name: "IMPERIAL SAFFRON OUD", 
-        category: "EXTRAIT DE PARFUM", 
-        price: 310.00, 
-        stock_quantity: 0, 
-        is_bestseller: false,
-        image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: "5", 
-        name: "ROSE DE TAIF NOIR", 
-        category: "PERFUME OIL", 
-        price: 150.00, 
-        stock_quantity: 15, 
+    {
+        id: "prod-2",
+        name: "IMPERIAL ROSE & AMBER",
+        category: "EXTRAIT DE PARFUM",
+        price: 320.00,
         is_bestseller: true,
-        image: "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80" 
+        image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80"
     },
-    { 
-        id: "6", 
-        name: "MIDNIGHT MUSK ROYALE", 
-        category: "EAU DE PARFUM", 
-        price: 195.00, 
-        stock_quantity: 3, 
+    {
+        id: "prod-3",
+        name: "SILVER MIST",
+        category: "EAU DE TOILETTE",
+        price: 150.00,
         is_bestseller: false,
-        image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" 
+        image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=80"
     },
-    { 
-        id: "7", 
-        name: "GOLD LEATHER CONCENTREE", 
-        category: "LUXURY ATTAR", 
-        price: 220.00, 
-        stock_quantity: 10, 
+    {
+        id: "prod-4",
+        name: "GOLDEN SANDS",
+        category: "EAU DE PARFUM",
+        price: 270.00,
         is_bestseller: false,
-        image: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80" 
-    },
-    { 
-        id: "8", 
-        name: "SYMPHONY OF OUD", 
-        category: "EXTRAIT DE PARFUM", 
-        price: 299.00, 
-        stock_quantity: 2, 
-        is_bestseller: true,
-        image: "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=600&q=80" 
+        image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
     }
 ];
 
-const WHATSAPP_NUMBER = "923400085347";
+let globalProducts = [];
 
-// LocalStorage helpers
-function getProducts() {
+// Account Details Config
+const PAYMENT_ACCOUNTS = {
+    JazzCash: "JazzCash: 0340 0085347 (Title: Umar Bin Riaz)",
+    EasyPaisa: "EasyPaisa: 0340 0085347 (Title: Umar Bin Riaz)",
+    NayaPay: "NayaPay ID: 03400085347 / @umarbinriaz"
+};
+
+// ==========================================
+// 2. LOCAL DATA MANAGEMENT & STORE RENDER
+// ==========================================
+function loadProductsFromStorage() {
     const stored = localStorage.getItem('umar_royale_products');
     if (!stored) {
-        localStorage.setItem('umar_royale_products', JSON.stringify(DEFAULT_PRODUCTS));
-        return DEFAULT_PRODUCTS;
+        localStorage.setItem('umar_royale_products', JSON.stringify(initialProducts));
+        globalProducts = initialProducts;
+    } else {
+        globalProducts = JSON.parse(stored);
     }
-    return JSON.parse(stored);
+    renderProducts();
 }
 
-function saveProducts(products) {
-    localStorage.setItem('umar_royale_products', JSON.stringify(products));
-    if (document.getElementById('homeProductsContainer')) loadHomeProducts();
-    if (document.getElementById('bestsellersContainer')) loadBestsellers();
-    if (document.getElementById('adminProductTableBody')) loadAdminProducts();
-}
+// Store Grid & Bestsellers HTML Rendering
+function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    const bestsellersContainer = document.getElementById('bestsellersContainer');
 
-// 🟢 Render Featured / All Products
-function loadHomeProducts() {
-    const container = document.getElementById('homeProductsContainer');
-    if (!container) return;
-
-    const products = getProducts();
-    container.innerHTML = products.map(prod => renderProductCardHTML(prod)).join('');
-}
-
-// 🟡 Render Bestsellers Section (if present)
-function loadBestsellers() {
-    const container = document.getElementById('bestsellersContainer');
-    if (!container) return;
-
-    const products = getProducts().filter(p => p.is_bestseller || (p.stock_quantity > 0 && p.stock_quantity <= 5));
-    container.innerHTML = products.map(prod => renderProductCardHTML(prod, true)).join('');
-}
-
-// Card Markup matching screenshot aesthetics
-function renderProductCardHTML(prod, isBestsellerSection = false) {
-    const stockQty = prod.stock_quantity ?? 0;
-    const isOutOfStock = stockQty <= 0;
-
-    const waMessage = encodeURIComponent(`Hello, I want to order ${prod.name} ($${Number(prod.price).toFixed(2)})`);
-    const orderLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`;
-
-    return `
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 border-0 text-center shadow-sm p-3 style-card">
-                <div class="position-relative overflow-hidden mb-3">
-                    <img src="${prod.image}" class="card-img-top img-fluid" alt="${prod.name}" style="max-height: 260px; object-fit: contain;">
+    // Main Product Grid
+    if (grid) {
+        if (globalProducts.length === 0) {
+            grid.innerHTML = '<div class="col-12 text-center py-5"><h4>No products available in store.</h4></div>';
+        } else {
+            grid.innerHTML = globalProducts.map(prod => `
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card glass-card text-center p-3 h-100 d-flex flex-column justify-content-between">
+                        <div class="position-relative overflow-hidden mb-3">
+                            <img src="${prod.image}" class="w-100 product-img" alt="${prod.name}" style="height:240px; object-fit:cover;">
+                        </div>
+                        <div>
+                            <span class="text-muted small text-uppercase letter-spacing">${prod.category || 'PARFUM'}</span>
+                            <h3 class="fs-5 mt-1">${prod.name}</h3>
+                            <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
+                        </div>
+                        <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
+                    </div>
                 </div>
-                <div class="card-body d-flex flex-column p-0">
-                    <small class="text-uppercase text-muted tracking-wide mb-1" style="font-size: 0.75rem;">${prod.category}</small>
-                    <h5 class="card-title text-uppercase font-weight-bold mb-2" style="letter-spacing: 1px; font-size: 1rem;">${prod.name}</h5>
-                    <p class="card-text text-gold font-weight-bold mb-3">$${Number(prod.price).toFixed(2)}</p>
-                    
-                    ${isOutOfStock ? 
-                        `<button class="btn btn-secondary w-100 py-2 text-uppercase font-weight-bold disabled">Out of Stock</button>` :
-                        `<a href="${orderLink}" target="_blank" class="btn btn-dark w-100 py-2 text-uppercase font-weight-bold">Add To Cart</a>`
-                    }
+            `).join('');
+        }
+    }
+
+    // Bestseller Section Dynamic Mapping
+    if (bestsellersContainer) {
+        const bestsellers = globalProducts.filter(p => p.is_bestseller);
+        if (bestsellers.length === 0) {
+            bestsellersContainer.innerHTML = '<div class="col-12 text-center py-3"><p class="text-muted">No bestsellers selected.</p></div>';
+        } else {
+            bestsellersContainer.innerHTML = bestsellers.map(prod => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card glass-card text-center p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <img src="${prod.image}" class="w-100 mb-3" style="height:250px; object-fit:cover;" alt="${prod.name}">
+                            <span class="badge bg-warning text-dark mb-2">â˜… BESTSELLER</span>
+                            <h3 class="fs-4">${prod.name}</h3>
+                            <p class="gold-text fw-semibold fs-5 my-2">$${Number(prod.price).toFixed(2)}</p>
+                        </div>
+                        <button class="btn-editorial-primary w-100 mt-2" onclick="addToCart('${prod.id}')">ADD TO CART</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-    `;
+            `).join('');
+        }
+    }
 }
 
-// 🔴 Admin Panel Controllers
-function loadAdminProducts() {
-    const tableBody = document.getElementById('adminProductTableBody');
-    if (!tableBody) return;
-
-    const products = getProducts();
-    tableBody.innerHTML = products.map((prod, index) => `
-        <tr>
-            <td>${index + 1}</td>
-            <td><img src="${prod.image}" width="40" height="40" style="object-fit:cover;"></td>
-            <td><strong>${prod.name}</strong><br><small class="text-muted">${prod.category}</small></td>
-            <td>$${Number(prod.price).toFixed(2)}</td>
-            <td>${prod.stock_quantity}</td>
-            <td>${prod.stock_quantity > 0 ? '<span class="badge bg-success">In Stock</span>' : '<span class="badge bg-danger">Out of Stock</span>'}</td>
-            <td class="text-end">
-                <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${prod.id}')">Delete</button>
-            </td>
-        </tr>
-    `).join('');
+// ==========================================
+// 3. CART FUNCTIONS
+// ==========================================
+function getCart() {
+    return JSON.parse(localStorage.getItem('umar_royale_cart')) || [];
 }
 
-function deleteProduct(id) {
-    if (!confirm("Delete product?")) return;
-    const products = getProducts().filter(p => p.id !== id);
-    saveProducts(products);
+function saveCart(cart) {
+    localStorage.setItem('umar_royale_cart', JSON.stringify(cart));
+    updateCartUI();
 }
 
+window.addToCart = function (productId) {
+    const product = globalProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    let cart = getCart();
+    const existing = cart.find(item => item.id === productId);
+
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
+
+    saveCart(cart);
+    document.getElementById('cartDrawer')?.classList.add('open');
+};
+
+window.removeFromCart = function (productId) {
+    let cart = getCart().filter(item => item.id !== productId);
+    saveCart(cart);
+};
+
+function updateCartUI() {
+    const cart = getCart();
+    const cartCountBadge = document.getElementById('cartCount');
+    const cartContainer = document.getElementById('cartItemsContainer');
+    const subtotalEl = document.getElementById('cartSubtotal');
+
+    const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+    if (cartCountBadge) cartCountBadge.textContent = totalQty;
+
+    if (cartContainer) {
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<p class="text-center text-muted py-4">Your shopping bag is currently empty.</p>';
+        } else {
+            cartContainer.innerHTML = cart.map(item => `
+                <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
+                    <img src="${item.image}" width="50" height="50" style="object-fit:cover; border-radius:4px;">
+                    <div class="flex-grow-1 ms-3 text-start">
+                        <h6 class="mb-0 fs-6">${item.name}</h6>
+                        <small class="text-muted">Qty: ${item.qty} Ã— $${item.price}</small>
+                    </div>
+                    <div class="text-end">
+                        <div class="fw-bold gold-text">$${(item.price * item.qty).toFixed(2)}</div>
+                        <button class="btn btn-sm text-danger p-0 border-0" onclick="removeFromCart('${item.id}')">&times; Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    if (subtotalEl) {
+        const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+        subtotalEl.textContent = `$${totalAmount.toFixed(2)}`;
+    }
+}
+
+// ==========================================
+// 4. PAYMENT & CHECKOUT FUNCTIONS
+// ==========================================
+window.togglePaymentDetails = function(method) {
+    const infoBox = document.getElementById('onlinePayInfo');
+    const detailsDiv = document.getElementById('payAccountDetails');
+    const trxInput = document.getElementById('trxId');
+
+    if (!infoBox) return;
+
+    if (method === 'COD') {
+        infoBox.classList.add('d-none');
+        if (trxInput) trxInput.removeAttribute('required');
+    } else {
+        infoBox.classList.remove('d-none');
+        if (detailsDiv) detailsDiv.innerHTML = `<i class="fa-solid fa-building-columns me-1"></i> ${PAYMENT_ACCOUNTS[method] || ''}`;
+        if (trxInput) trxInput.setAttribute('required', 'true');
+    }
+};
+
+// ==========================================
+// 5. DOM CONTENT LOADED (EVENT LISTENERS)
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    loadHomeProducts();
-    loadBestsellers();
-    loadAdminProducts();
+    // Local data load aur UI setup
+    loadProductsFromStorage();
+    updateCartUI();
+
+    // Theme Toggle
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.className = nextTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    });
+
+    // Drawers & Search Modals
+    document.getElementById('cartToggleBtn')?.addEventListener('click', () => {
+        document.getElementById('cartDrawer')?.classList.add('open');
+    });
+    document.getElementById('closeCartBtn')?.addEventListener('click', () => {
+        document.getElementById('cartDrawer')?.classList.remove('open');
+    });
+
+    document.getElementById('searchToggleBtn')?.addEventListener('click', () => {
+        document.getElementById('searchOverlay')?.classList.add('open');
+    });
+    document.getElementById('closeSearchBtn')?.addEventListener('click', () => {
+        document.getElementById('searchOverlay')?.classList.remove('open');
+    });
+
+    // Payment Method Change Listener
+    document.getElementById('payMethod')?.addEventListener('change', function() {
+        togglePaymentDetails(this.value);
+    });
+
+    document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+        const subtotal = document.getElementById('cartSubtotal')?.textContent || '$0.00';
+        const modalSubtotal = document.getElementById('modalSubtotal');
+        if (modalSubtotal) modalSubtotal.textContent = subtotal;
+    });
+
+    // Contact Form Handler
+    document.getElementById('contactForm')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Thank you for contacting UMAR ROYALE. We will get back to you shortly!');
+        this.reset();
+    });
+
+    // Checkout Submit (Local CMS Backup + WhatsApp Redirection)
+    document.getElementById('checkoutForm')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const cart = getCart();
+        if (cart.length === 0) {
+            alert("Aapka cart khali hai!");
+            return;
+        }
+
+        const name = document.getElementById('custName')?.value || '';
+        const address = document.getElementById('custAddress')?.value || '';
+        const phone = document.getElementById('custPhone')?.value || '';
+        const method = document.getElementById('payMethod')?.value || 'COD';
+        const trxId = document.getElementById('trxId')?.value || 'N/A';
+        const totalAmount = document.getElementById('modalSubtotal')?.textContent || '$0.00';
+        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+
+        // Save order locally for Admin/CMS
+        const newOrder = {
+            orderId, date: new Date().toLocaleString(),
+            customer: { name, address, phone },
+            payment: { method, trxId },
+            items: cart, total: totalAmount, status: 'Pending'
+        };
+
+        let orders = JSON.parse(localStorage.getItem('umar_royale_orders')) || [];
+        orders.unshift(newOrder);
+        localStorage.setItem('umar_royale_orders', JSON.stringify(orders));
+
+        // WhatsApp Message Construction
+        let itemsText = cart.map(item => `â€¢ ${item.name} (x${item.qty})`).join('%0A');
+        let waMessage = `*NEW ORDER CONFIRMATION* ðŸ›ï¸%0A%0A` +
+            `*Order ID:* ${orderId}%0A` +
+            `*Name:* ${name}%0A` +
+            `*Phone:* ${phone}%0A` +
+            `*Address:* ${address}%0A%0A` +
+            `*Items Ordered:*%0A${itemsText}%0A%0A` +
+            `*Total Amount:* ${totalAmount}%0A` +
+            `*Payment Method:* ${method}%0A`;
+
+        if (method !== 'COD') {
+            waMessage += `*TRX ID:* ${trxId}%0A%0Aâš ï¸ *Note:* Payment screenshot niche attach kar raha/rahi hoon.`;
+        } else {
+            waMessage += `ðŸ“¦ *Payment Mode:* Cash on Delivery`;
+        }
+
+        // Reset Cart
+        localStorage.removeItem('umar_royale_cart');
+        updateCartUI();
+        this.reset();
+        togglePaymentDetails('COD');
+
+        const modalEl = document.getElementById('checkoutModal');
+        if (modalEl && window.bootstrap) {
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) modal.hide();
+        }
+        document.getElementById('cartDrawer')?.classList.remove('open');
+
+        // Redirect to WhatsApp
+        const whatsappNumber = "923092230740";
+        window.open(`https://wa.me/${whatsappNumber}?text=${waMessage}`, '_blank');
+    });
 });

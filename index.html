@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMAR ROYALE | Haute Parfumerie Paris</title>
     <meta name="description"
-        content="UMAR ROYALE — Haute Parfumerie de Paris. Handcrafted, rare botanical fragrances. Pure CSS experience.">
+        content="UMAR ROYALE — Haute Parfumerie de Paris. Handcrafted, rare botanical fragrances. Shop the collection online.">
     <link rel="shortcut icon" href="./assets/u.png" type="image/png">
 
     <!-- Google Fonts -->
@@ -19,7 +19,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Engine CSS (Zero JavaScript) -->
+    <!-- Engine CSS -->
     <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -68,7 +68,7 @@
                 </label>
                 <label for="cartChk" class="nav-btn" title="Shopping bag">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count">3</span>
+                    <span class="cart-count" id="cartCount">0</span>
                 </label>
                 <label for="themeChk" class="nav-btn" title="Light / Dark">
                     <i class="fa-solid fa-moon"></i>
@@ -83,7 +83,7 @@
     <div class="search-panel" role="dialog" aria-label="Search">
         <label for="searchChk" class="panel-close">&times;</label>
         <span class="search-script">Search the Maison</span>
-        <input type="text" class="search-input" placeholder="Oud, Rose, Amber...">
+        <input type="text" class="search-input" id="searchInput" placeholder="Oud, Rose, Amber...">
         <div class="search-tags">
             <a href="#collections">#OUD</a>
             <a href="#collections">#ROSE</a>
@@ -96,43 +96,17 @@
     <!-- ==================== CART DRAWER ==================== -->
     <aside class="cart-drawer" role="dialog" aria-label="Shopping bag">
         <div class="drawer-head">
-            <h3>YOUR BAG <span class="gold-text">(3)</span></h3>
+            <h3>YOUR BAG <span class="gold-text" id="bagCount">(0)</span></h3>
             <label for="cartChk" class="panel-close">&times;</label>
         </div>
 
-        <div class="drawer-items">
-            <div class="cart-row">
-                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=200&q=80"
-                    alt="ROYAL OUD NOIR">
-                <div class="cart-row-meta">
-                    <strong>ROYAL OUD NOIR</strong>
-                    <small>1 × $280.00</small>
-                </div>
-                <b class="gold-text">$280</b>
-            </div>
-            <div class="cart-row">
-                <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=200&q=80"
-                    alt="IMPERIAL ROSE &amp; AMBER">
-                <div class="cart-row-meta">
-                    <strong>IMPERIAL ROSE &amp; AMBER</strong>
-                    <small>2 × $320.00</small>
-                </div>
-                <b class="gold-text">$640</b>
-            </div>
-            <div class="cart-row">
-                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=200&q=80"
-                    alt="SILVER MIST">
-                <div class="cart-row-meta">
-                    <strong>SILVER MIST</strong>
-                    <small>1 × $150.00</small>
-                </div>
-                <b class="gold-text">$150</b>
-            </div>
+        <div class="drawer-items" id="cartItems">
+            <p class="cart-empty">Your bag awaits its first treasure.</p>
         </div>
 
         <div class="drawer-foot">
-            <div class="subtotal">Subtotal <b class="gold-text">$1,070.00</b></div>
-            <label for="modalChk" class="btn-gold w-100">PROCEED TO CHECKOUT</label>
+            <div class="subtotal">Subtotal <b class="gold-text" id="cartSubtotal">$0.00</b></div>
+            <label for="modalChk" class="btn-gold w-100" id="checkoutBtn">PROCEED TO CHECKOUT</label>
         </div>
     </aside>
 
@@ -142,13 +116,13 @@
             <label for="modalChk" class="panel-close">&times;</label>
             <span class="eyebrow">Final step</span>
             <h3 class="modal-title">Complete Your Order</h3>
-            <form class="checkout-form" action="#" method="get">
+            <form class="checkout-form" id="checkoutForm" action="#" method="get">
                 <input type="text" name="name" placeholder="FULL NAME" required>
                 <input type="tel" name="phone" placeholder="PHONE / MOBILE" required>
                 <textarea name="address" rows="2" placeholder="SHIPPING ADDRESS" required></textarea>
                 <div class="pay-row">
                     <span>Total Pay</span>
-                    <b class="gold-text">$1,070.00</b>
+                    <b class="gold-text" id="checkoutTotal">$0.00</b>
                 </div>
                 <button class="btn-gold w-100" type="submit">CONFIRM ORDER</button>
             </form>
@@ -254,7 +228,7 @@
                 <label for="f-fresh">Fresh</label>
             </div>
 
-            <div class="product-grid">
+            <div class="product-grid" id="productGrid">
                 <article class="product" data-cat="oud">
                     <div class="product-media">
                         <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"
@@ -350,7 +324,7 @@
                 <input type="radio" name="slide" id="s2">
                 <input type="radio" name="slide" id="s3">
 
-                <div class="carousel-track">
+                <div class="carousel-track" id="carouselTrack">
                     <figure class="slide">
                         <div class="slide-media">
                             <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=80"
@@ -605,98 +579,18 @@
                 </form>
             </div>
         </div>
-        <p class="footer-copy">&copy; 2026 UMAR ROYALE — All Rights Reserved · Crafted with pure HTML &amp; CSS, no
+        <p class="footer-copy">&copy; 2026 UMAR ROYALE — All Rights Reserved · Crafted with HTML, CSS &amp; a whisper of
             JavaScript.</p>
     </footer>
 
-    <!-- ==================== QUICK VIEW LIGHTBOXES (:target) ==================== -->
-    <div class="lightbox" id="lb1">
-        <div class="lightbox-card">
-            <a href="#collections" class="panel-close">&times;</a>
-            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80"
-                alt="ROYAL OUD NOIR">
-            <div class="lightbox-meta">
-                <span class="eyebrow">Eau de Parfum</span>
-                <h3>Royal Oud Noir</h3>
-                <p>A composition of smoke, leather and amber — nocturnal, magnetic, unforgettable.</p>
-                <b class="gold-text">$280.00</b>
-                <label for="cartChk" class="btn-gold">Add to Bag</label>
-            </div>
-        </div>
-    </div>
-    <div class="lightbox" id="lb2">
-        <div class="lightbox-card">
-            <a href="#collections" class="panel-close">&times;</a>
-            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=700&q=80"
-                alt="IMPERIAL ROSE AND AMBER">
-            <div class="lightbox-meta">
-                <span class="eyebrow">Extrait de Parfum</span>
-                <h3>Imperial Rose &amp; Amber</h3>
-                <p>Damask rose and warm amber woven into an imperial bouquet of rare French elegance.</p>
-                <b class="gold-text">$320.00</b>
-                <label for="cartChk" class="btn-gold">Add to Bag</label>
-            </div>
-        </div>
-    </div>
-    <div class="lightbox" id="lb3">
-        <div class="lightbox-card">
-            <a href="#collections" class="panel-close">&times;</a>
-            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80"
-                alt="SILVER MIST">
-            <div class="lightbox-meta">
-                <span class="eyebrow">Eau de Toilette</span>
-                <h3>Silver Mist</h3>
-                <p>A crisp, airy eau de toilette kissed with bergamot, musk and cool silver florals.</p>
-                <b class="gold-text">$150.00</b>
-                <label for="cartChk" class="btn-gold">Add to Bag</label>
-            </div>
-        </div>
-    </div>
-    <div class="lightbox" id="lb4">
-        <div class="lightbox-card">
-            <a href="#collections" class="panel-close">&times;</a>
-            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80"
-                alt="GOLDEN SANDS">
-            <div class="lightbox-meta">
-                <span class="eyebrow">Eau de Parfum</span>
-                <h3>Golden Sands</h3>
-                <p>Sun-drenched amber, saffron and vanilla — the warmth of a desert dusk in a single flacon.</p>
-                <b class="gold-text">$270.00</b>
-                <label for="cartChk" class="btn-gold">Add to Bag</label>
-            </div>
-        </div>
-    </div>
-    <div class="lightbox" id="lb5">
-        <div class="lightbox-card">
-            <a href="#collections" class="panel-close">&times;</a>
-            <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=700&q=80"
-                alt="VELVET AMBER INTENSE">
-            <div class="lightbox-meta">
-                <span class="eyebrow">Eau de Parfum</span>
-                <h3>Velvet Amber Intense</h3>
-                <p>Velvety amber fused with tonka and incense — a soft, persistent trail of pure warmth.</p>
-                <b class="gold-text">$185.00</b>
-                <label for="cartChk" class="btn-gold">Add to Bag</label>
-            </div>
-        </div>
-    </div>
-    <div class="lightbox" id="lb6">
-        <div class="lightbox-card">
-            <a href="#collections" class="panel-close">&times;</a>
-            <img src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=700&q=80"
-                alt="ROSE DE TAIF NOIR">
-            <div class="lightbox-meta">
-                <span class="eyebrow">Perfume Oil</span>
-                <h3>Rose de Taïf Noir</h3>
-                <p>Hand-harvested Taif roses deepened with black agarwood — romantic, mysterious, rare.</p>
-                <b class="gold-text">$150.00</b>
-                <label for="cartChk" class="btn-gold">Add to Bag</label>
-            </div>
-        </div>
-    </div>
+    <!-- ==================== QUICK VIEW LIGHTBOXES (rendered by store.js) ==================== -->
+    <div id="lightboxMount"></div>
 
     <!-- Back to top -->
     <a href="#home" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Storefront Engine -->
+    <script src="js/store.js"></script>
 
 </body>
 
