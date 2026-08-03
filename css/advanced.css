@@ -3,22 +3,8 @@
    Zero JavaScript: checkbox/radio hacks, :target, :has(), scroll-driven anims
    ========================================================================== */
 
+/* LIGHT THEME (default) */
 :root {
-    --bg: #0a0a0c;
-    --surface: #131318;
-    --text: #f6f4ef;
-    --muted: #9a9a9f;
-    --gold: #c5a059;
-    --gold-soft: rgba(197, 160, 89, 0.14);
-    --line: rgba(255, 255, 255, 0.1);
-    --font-heading: 'Cormorant Garamond', serif;
-    --font-body: 'Montserrat', sans-serif;
-    --shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-    --ease: 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* ---------------- THEME TOGGLE :has() ---------------- */
-body:has(#themeChk:checked) {
     --bg: #fcfbf7;
     --surface: #ffffff;
     --text: #141414;
@@ -26,7 +12,22 @@ body:has(#themeChk:checked) {
     --gold: #9e7d3b;
     --gold-soft: rgba(158, 125, 59, 0.12);
     --line: rgba(0, 0, 0, 0.12);
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
     --shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    --ease: 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ---------------- THEME TOGGLE :has() ---------------- */
+body:has(#themeChk:checked) {
+    --bg: #0a0a0c;
+    --surface: #131318;
+    --text: #f6f4ef;
+    --muted: #9a9a9f;
+    --gold: #c5a059;
+    --gold-soft: rgba(197, 160, 89, 0.14);
+    --line: rgba(255, 255, 255, 0.1);
+    --shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -745,9 +746,9 @@ body:has(#cartChk:checked) .cart-drawer { transform: translateX(0); box-shadow: 
 .footer-copy { text-align: center; padding: 20px 16px; border-top: 1px solid var(--line); font-size: 0.72rem; color: var(--muted); }
 
 /* theme icon swap */
-.nav-btn .fa-sun { display: none; }
-body:has(#themeChk:checked) .nav-btn .fa-sun { display: inline-block; }
-body:has(#themeChk:checked) .nav-btn .fa-moon { display: none; }
+.nav-btn .fa-moon { display: none; }
+body:has(#themeChk:checked) .nav-btn .fa-sun { display: none; }
+body:has(#themeChk:checked) .nav-btn .fa-moon { display: inline-block; }
 
 /* ==========================================================================
    CHECKOUT MODAL (checkbox driven)
@@ -786,7 +787,8 @@ body:has(#modalChk:checked) .checkout-modal {
 .checkout-form { display: grid; gap: 14px; }
 
 .checkout-form input,
-.checkout-form textarea {
+.checkout-form textarea,
+.checkout-form select {
     background: var(--bg);
     border: 1px solid var(--line);
     color: var(--text);
@@ -799,8 +801,29 @@ body:has(#modalChk:checked) .checkout-modal {
     resize: vertical;
 }
 
+.checkout-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.checkout-form select option { background: var(--surface); color: var(--text); }
+
 .checkout-form input:focus,
-.checkout-form textarea:focus { border-color: var(--gold); }
+.checkout-form textarea:focus,
+.checkout-form select:focus { border-color: var(--gold); }
+
+.pay-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.66rem;
+    color: var(--muted);
+    line-height: 1.55;
+    letter-spacing: 0.4px;
+}
+
+.pay-note i { color: var(--gold); margin-top: 2px; }
 
 .pay-row {
     display: flex;
@@ -847,7 +870,74 @@ body:has(#modalChk:checked) .checkout-modal {
     to { transform: scale(1); opacity: 1; }
 }
 
-.lightbox-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lightbox-media {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 380px;
+}
+
+.lightbox-main {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 380px;
+    overflow: hidden;
+    object-fit: cover;
+    display: block;
+}
+
+.lightbox-main > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.gv-state:checked ~ .lightbox-main > img { opacity: 0; }
+#gv1:checked ~ .lightbox-main > img:nth-of-type(1) { opacity: 1; }
+#gv2:checked ~ .lightbox-main > img:nth-of-type(2) { opacity: 1; }
+#gv3:checked ~ .lightbox-main > img:nth-of-type(3) { opacity: 1; }
+
+.lightbox-thumbs {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    overflow-x: auto;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+}
+
+.lightbox-thumbs label,
+.lightbox-thumbs .thumb {
+    width: 58px; height: 58px;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.12);
+    transition: border-color var(--ease), transform var(--ease);
+}
+
+.lightbox-thumbs label img,
+.lightbox-thumbs .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.lightbox-thumbs label:hover,
+.lightbox-thumbs .thumb:hover { transform: translateY(-2px); }
+
+.lightbox-thumbs .thumb.active,
+#gv1:checked ~ .lightbox-thumbs label:nth-of-type(1),
+#gv2:checked ~ .lightbox-thumbs label:nth-of-type(2),
+#gv3:checked ~ .lightbox-thumbs label:nth-of-type(3) { border-color: var(--gold); }
 
 .lightbox-meta { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
 .lightbox-meta h3 { font-family: var(--font-heading); font-size: 2rem; margin: 8px 0; }
@@ -919,7 +1009,9 @@ body:has(#modalChk:checked) .checkout-modal {
     .stat:nth-child(2) { border-right: none; }
     .stat:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
     .lightbox-card { grid-template-columns: 1fr; }
-    .lightbox-media img { height: 40vh; }
+    .lightbox-card .lightbox-media,
+    .lightbox-card .lightbox-main { min-height: 0; height: 40vh; }
+    .checkout-card { max-height: 88vh; overflow-y: auto; }
 
     /* mobile menu */
     .nav-toggle { display: block; }

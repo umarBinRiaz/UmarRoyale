@@ -6,53 +6,77 @@
     var STORAGE_ORDERS   = 'royale_orders';
     var STORAGE_SETTINGS = 'royale_store_settings';
 
+    var IMG = 'https://images.unsplash.com/';
+    var GALLERY_POOL = [
+        IMG + 'photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=600&q=80',
+        IMG + 'photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80'
+    ];
+
+    function galleryFor(main, picks) {
+        return [main].concat(picks.map(function (i) { return GALLERY_POOL[i]; }));
+    }
+
     var DEFAULT_PRODUCTS = [
         {
             id: 'p1', name: 'Royal Oud Noir', cat: 'oud', tagline: 'Eau de Parfum',
-            price: 280, rating: 5, stock: 25, bestseller: true,
-            image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80',
+            price: 28000, rating: 5, stock: 25, bestseller: true,
+            image: GALLERY_POOL[0],
+            gallery: galleryFor(GALLERY_POOL[0], [4, 2, 6]),
             description: 'Smoked oud layered over dark amber and a whisper of leather â€” a nocturnal masterpiece.'
         },
         {
             id: 'p2', name: 'Imperial Rose & Amber', cat: 'floral', tagline: 'Extrait de Parfum',
-            price: 320, rating: 5, stock: 18, bestseller: true,
-            image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80',
+            price: 32000, rating: 5, stock: 18, bestseller: true,
+            image: GALLERY_POOL[1],
+            gallery: galleryFor(GALLERY_POOL[1], [5, 0, 7]),
             description: 'Damask rose and warm amber woven into an imperial bouquet of rare French elegance.'
         },
         {
             id: 'p3', name: 'Silver Mist', cat: 'fresh', tagline: 'Eau de Toilette',
-            price: 150, rating: 4, stock: 40, bestseller: false,
-            image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80',
+            price: 15000, rating: 4, stock: 40, bestseller: false,
+            image: GALLERY_POOL[2],
+            gallery: galleryFor(GALLERY_POOL[2], [1, 7, 4]),
             description: 'A crisp, airy eau de toilette kissed with bergamot, musk and cool silver florals.'
         },
         {
             id: 'p4', name: 'Golden Sands', cat: 'fresh', tagline: 'Eau de Parfum',
-            price: 270, rating: 5, stock: 15, bestseller: true,
-            image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80',
+            price: 27000, rating: 5, stock: 15, bestseller: true,
+            image: GALLERY_POOL[3],
+            gallery: galleryFor(GALLERY_POOL[3], [6, 0, 2]),
             description: 'Sun-drenched amber, saffron and vanilla â€” the warmth of a desert dusk in a single flacon.'
         },
         {
             id: 'p5', name: 'Velvet Amber Intense', cat: 'oud', tagline: 'Eau de Parfum',
-            price: 185, rating: 4, stock: 0, bestseller: false,
-            image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80',
+            price: 18500, rating: 4, stock: 0, bestseller: false,
+            image: GALLERY_POOL[4],
+            gallery: galleryFor(GALLERY_POOL[4], [7, 3, 1]),
             description: 'Velvety amber fused with tonka and incense â€” a soft, persistent trail of pure warmth.'
         },
         {
             id: 'p6', name: 'Rose de TaÃ¯f Noir', cat: 'floral', tagline: 'Perfume Oil',
-            price: 150, rating: 5, stock: 30, bestseller: false,
-            image: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&w=600&q=80',
+            price: 15000, rating: 5, stock: 30, bestseller: false,
+            image: GALLERY_POOL[5],
+            gallery: galleryFor(GALLERY_POOL[5], [1, 6, 0]),
             description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
         },
         {
             id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
-            price: 175, rating: 5, stock: 40, bestseller: true,
+            price: 17500, rating: 5, stock: 40, bestseller: true,
             image: 'https://scentus.pk/wp-content/uploads/2026/05/Office.png',
-            description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
+            gallery: ['https://scentus.pk/wp-content/uploads/2026/05/Office.png', GALLERY_POOL[2], GALLERY_POOL[3], GALLERY_POOL[4]],
+            description: 'A crisp, confident office scent with notes of bergamot, lavender and clean musk.'
         },
         {
             id: 'p8', name: 'LOCATOSE WHITEs', cat: 'floral', tagline: 'Perfume Oil',
-            price: 180, rating: 5, stock: 40, bestseller: false,
+            price: 18000, rating: 5, stock: 40, bestseller: false,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjI330IwycnvpguA8R4aZjc4vIDnYoaxCD0Ht80pFabw&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjI330IwycnvpguA8R4aZjc4vIDnYoaxCD0Ht80pFabw&s=10', GALLERY_POOL[1], GALLERY_POOL[5], GALLERY_POOL[2]],
             description: 'A fresh, clean fragrance with notes of white flowers and a hint of vanilla.'
         }
     ];
@@ -93,7 +117,7 @@ function getProducts() {
     }
 
     function money(value) {
-        return '$' + Number(value || 0).toFixed(2);
+        return 'Rs. ' + Number(value || 0).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
     }
 
     function stars(rating) {
@@ -154,11 +178,21 @@ function getProducts() {
         var products = getProducts();
         mount.innerHTML = products.map(function (p) {
             var out = isOutOfStock(p);
+            var gallery = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
+            var main = gallery[0];
+            var thumbs = gallery.map(function (src, i) {
+                return '<button type="button" class="thumb' + (i === 0 ? ' active' : '') + '" data-src="' + esc(src) + '" aria-label="View image ' + (i + 1) + '">' +
+                    '<img src="' + esc(src) + '" alt="" loading="lazy" onerror="this.closest(\'.thumb\').style.display=\'none\'">' +
+                '</button>';
+            }).join('');
             return '' +
                 '<div class="lightbox" id="lb-' + esc(p.id) + '">' +
                     '<div class="lightbox-card">' +
                         '<a href="#collections" class="panel-close">&times;</a>' +
-                        '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '">' +
+                        '<div class="lightbox-media">' +
+                            '<img class="lightbox-main" src="' + esc(main) + '" alt="' + esc(p.name) + '" onerror="this.src=\'https://via.placeholder.com/600x600?text=UMAR+ROYALE\'">' +
+                            (gallery.length > 1 ? '<div class="lightbox-thumbs">' + thumbs + '</div>' : '') +
+                        '</div>' +
                         '<div class="lightbox-meta">' +
                             '<span class="eyebrow">' + esc(p.tagline || 'Eau de Parfum') + '</span>' +
                             '<h3>' + esc(p.name) + '</h3>' +
@@ -414,8 +448,18 @@ function getProducts() {
             var name    = form.elements['name'].value.trim();
             var phone   = form.elements['phone'].value.trim();
             var address = form.elements['address'].value.trim();
+            var payment = form.elements['payment'] ? form.elements['payment'].value : '';
+            var payAccount = form.elements['payAccount'] ? form.elements['payAccount'].value.trim() : '';
             if (!name || !phone || !address) {
                 showToast('Please complete all order fields.');
+                return;
+            }
+            if (!payment) {
+                showToast('Please select a payment method.');
+                return;
+            }
+            if (!payAccount) {
+                showToast('Please enter your payment account number.');
                 return;
             }
 
@@ -431,7 +475,8 @@ function getProducts() {
                     return { id: i.id, name: i.name, price: i.price, qty: i.qty, image: i.image };
                 }),
                 total: Number(total.toFixed(2)),
-                payment: 'Cash on Delivery',
+                payment: payment + ' (Advance Payment)',
+                payAccount: payAccount,
                 status: 'Pending'
             };
 
@@ -447,7 +492,9 @@ function getProducts() {
                 '*Address:* ' + address + '\n\n' +
                 '*Items:*\n' + itemsText + '\n\n' +
                 '*Total:* ' + money(total) + '\n' +
-                '*Payment:* Cash on Delivery';
+                '*Payment:* ' + payment + ' (Advance Payment)\n' +
+                '*Payer Account:* ' + payAccount + '\n\n' +
+                '*Note:* Order will be dispatched after the advance payment of ' + money(total) + ' is confirmed. Please send your transaction ID on this number.';
 
             window.open('https://wa.me/' + whatsappNumber() + '?text=' + encodeURIComponent(msg), '_blank');
 
@@ -457,7 +504,7 @@ function getProducts() {
             form.reset();
             closeCheckbox('modalChk');
             closeCheckbox('cartChk');
-            showToast('Order placed! Finishing up in WhatsApp...');
+            showToast('Order placed! Complete the advance payment on WhatsApp...');
         });
     }
 
@@ -507,6 +554,16 @@ function getProducts() {
        9. GLOBAL CLICK DELEGATION (add-to-bag anywhere on the page)
        ------------------------------------------------------------------ */
     document.addEventListener('click', function (e) {
+        var thumb = e.target.closest('.lightbox-thumbs .thumb');
+        if (thumb) {
+            var media = thumb.closest('.lightbox-media');
+            var main = media ? media.querySelector('.lightbox-main') : null;
+            if (main) main.src = thumb.getAttribute('data-src');
+            var thumbs = thumb.parentElement.querySelectorAll('.thumb');
+            for (var i = 0; i < thumbs.length; i++) thumbs[i].classList.remove('active');
+            thumb.classList.add('active');
+            return;
+        }
         var addBtn = e.target.closest('[data-add]');
         if (addBtn) {
             addToCart(addBtn.getAttribute('data-add'));

@@ -62,7 +62,7 @@ function renderAdminProductsTable() {
             <td><img src="${p.image}" width="45" height="45" class="rounded object-fit-cover"></td>
             <td class="fw-semibold">${p.title}</td>
             <td><span class="badge bg-gold text-dark">${p.category}</span></td>
-            <td>$${p.price}.00</td>
+            <td>Rs. ${Number(p.price).toLocaleString('en-US', { maximumFractionDigits: 2 })}</td>
             <td>
                 <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${p.id}')"><i class="fa-solid fa-trash"></i></button>
             </td>
@@ -142,7 +142,7 @@ const DEFAULT_ADMIN_PRODUCTS = [
         id: 'p1',
         title: 'Royale Essence Extrait',
         category: 'Oud',
-        price: 480,
+        price: 48000,
         rating: 5,
         image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600',
         description: 'A dark, velvety blend of aged Cambodian Oud, rare saffron, and wild honey.'
@@ -151,7 +151,7 @@ const DEFAULT_ADMIN_PRODUCTS = [
         id: 'p2',
         title: 'Velvet Taif Rose',
         category: 'Floral',
-        price: 390,
+        price: 39000,
         rating: 5,
         image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=600',
         description: 'Hand-picked morning Taif roses layered over creamy Mysore sandalwood.'
@@ -160,7 +160,7 @@ const DEFAULT_ADMIN_PRODUCTS = [
         id: 'p3',
         title: 'Saffron & Golden Amber',
         category: 'Oriental',
-        price: 520,
+        price: 52000,
         rating: 4.9,
         image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=600',
         description: 'Warm golden amber enriched with rare Kashmiri saffron and smoked vanilla.'
@@ -169,7 +169,7 @@ const DEFAULT_ADMIN_PRODUCTS = [
         id: 'p4',
         title: 'Monarch Smoke Oud',
         category: 'Oud',
-        price: 610,
+        price: 61000,
         rating: 5,
         image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&q=80&w=600',
         description: 'Deep, resinous incense mixed with wild leather and royal black agarwood.'
@@ -268,10 +268,10 @@ function loadDashboardMetrics() {
     const totalOrdersCount = orders.length;
     const avgOrderValue = totalOrdersCount > 0 ? (totalRevenue / totalOrdersCount) : 0;
 
-    document.getElementById('statRevenue').innerText = `$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+    document.getElementById('statRevenue').innerText = `Rs. ${totalRevenue.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
     document.getElementById('statOrders').innerText = totalOrdersCount;
     document.getElementById('statProducts').innerText = products.length;
-    document.getElementById('statAov').innerText = `$${avgOrderValue.toFixed(2)}`;
+    document.getElementById('statAov').innerText = `Rs. ${avgOrderValue.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 }
 
 /* ==========================================================================
@@ -295,7 +295,7 @@ function renderAdminProducts() {
             </td>
             <td><strong class="text-light">${p.title}</strong></td>
             <td><span class="badge bg-gold-dim text-gold">${p.category}</span></td>
-            <td class="gold-text fw-bold">$${parseFloat(p.price).toFixed(2)}</td>
+            <td class="gold-text fw-bold">Rs. ${parseFloat(p.price).toLocaleString('en-US', { maximumFractionDigits: 2 })}</td>
             <td class="text-gold"><i class="fa-solid fa-star me-1"></i>${p.rating}</td>
             <td class="text-end">
                 <button class="btn btn-sm btn-outline-gold me-2" onclick="prepareEditProduct('${p.id}')">
@@ -394,7 +394,7 @@ function renderOrdersTables() {
                 <td class="fw-bold text-gold">${ord.id}</td>
                 <td>${ord.client}</td>
                 <td>${ord.itemsCount || 1} Item(s)</td>
-                <td class="gold-text">$${parseFloat(ord.total).toFixed(2)}</td>
+                <td class="gold-text">Rs. ${parseFloat(ord.total).toLocaleString('en-US', { maximumFractionDigits: 2 })}</td>
                 <td><span class="badge ${ord.status === 'Dispatched' ? 'bg-success' : 'bg-warning text-dark'}">${ord.status}</span></td>
                 <td class="text-muted small">${ord.date}</td>
             </tr>
@@ -410,7 +410,7 @@ function renderOrdersTables() {
                     <small class="text-muted">${ord.email}</small>
                 </td>
                 <td><small>${ord.payment}</small></td>
-                <td class="gold-text fw-bold">$${parseFloat(ord.total).toFixed(2)}</td>
+                <td class="gold-text fw-bold">Rs. ${parseFloat(ord.total).toLocaleString('en-US', { maximumFractionDigits: 2 })}</td>
                 <td>
                     <select class="form-select form-select-sm luxury-input-admin" onchange="updateOrderStatus('${ord.id}', this.value)">
                         <option value="Processing" ${ord.status === 'Processing' ? 'selected' : ''}>Processing</option>
@@ -548,10 +548,10 @@ function renderDashboardStats() {
     const orderCount = orders.length;
     const aov = orderCount > 0 ? (revenue / orderCount) : 0;
 
-    document.getElementById('statRevenue').innerText = `$${revenue.toFixed(2)}`;
+    document.getElementById('statRevenue').innerText = `Rs. ${revenue.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
     document.getElementById('statOrders').innerText = orderCount;
     document.getElementById('statProducts').innerText = products.length;
-    document.getElementById('statAov').innerText = `$${aov.toFixed(2)}`;
+    document.getElementById('statAov').innerText = `Rs. ${aov.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 }
 
 /* ==========================================================================
@@ -572,7 +572,7 @@ function renderProductsTable() {
             <td><img src="${p.image}" width="40" height="40" class="rounded object-fit-cover border border-gold-dim"></td>
             <td class="fw-bold">${p.title}</td>
             <td><span class="badge bg-dark border border-warning text-warning">${p.category}</span></td>
-            <td class="text-warning fw-bold">$${parseFloat(p.price).toFixed(2)}</td>
+            <td class="text-warning fw-bold">Rs. ${parseFloat(p.price).toLocaleString('en-US', { maximumFractionDigits: 2 })}</td>
             <td class="text-end">
                 <button class="btn btn-sm btn-outline-gold me-1" onclick="prepareEditProduct('${p.id}')"><i class="fa-solid fa-pen"></i></button>
                 <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${p.id}')"><i class="fa-solid fa-trash"></i></button>
@@ -658,7 +658,7 @@ function renderOrdersTables() {
         <tr>
             <td class="fw-bold text-warning">${o.id || 'ORD-LIVE'}</td>
             <td>${o.client || 'Valued Customer'}</td>
-            <td>$${parseFloat(o.total || 0).toFixed(2)}</td>
+            <td>Rs. ${parseFloat(o.total || 0).toLocaleString('en-US', { maximumFractionDigits: 2 })}</td>
             <td><span class="badge badge-status ${o.status === 'Dispatched' ? 'badge-dispatched' : 'badge-processing'}">${o.status || 'Processing'}</span></td>
             <td class="text-end">
                 <button class="btn btn-sm btn-outline-danger" onclick="deleteOrder('${o.id}')"><i class="fa-solid fa-trash"></i></button>

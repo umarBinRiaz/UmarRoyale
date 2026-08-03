@@ -105,7 +105,7 @@
         </div>
 
         <div class="drawer-foot">
-            <div class="subtotal">Subtotal <b class="gold-text" id="cartSubtotal">$0.00</b></div>
+            <div class="subtotal">Subtotal <b class="gold-text" id="cartSubtotal">Rs. 0</b></div>
             <label for="modalChk" class="btn-gold w-100" id="checkoutBtn">PROCEED TO CHECKOUT</label>
         </div>
     </aside>
@@ -120,9 +120,18 @@
                 <input type="text" name="name" placeholder="FULL NAME" required>
                 <input type="tel" name="phone" placeholder="PHONE / MOBILE" required>
                 <textarea name="address" rows="2" placeholder="SHIPPING ADDRESS" required></textarea>
+                <select name="payment" class="checkout-select" required>
+                    <option value="" selected disabled>PAYMENT METHOD — ADVANCE</option>
+                    <option value="JazzCash">JazzCash — Advance</option>
+                    <option value="Easypaisa">Easypaisa — Advance</option>
+                    <option value="Bank Transfer">Bank Transfer — Advance</option>
+                </select>
+                <input type="text" name="payAccount" placeholder="YOUR JAZZCASH / EASYPASA / BANK ACCOUNT NO." required>
+                <p class="pay-note"><i class="fa-solid fa-circle-info"></i> Orders are dispatched only after the advance
+                    payment is confirmed. Our account details will be shared on WhatsApp.</p>
                 <div class="pay-row">
                     <span>Total Pay</span>
-                    <b class="gold-text" id="checkoutTotal">$0.00</b>
+                    <b class="gold-text" id="checkoutTotal">Rs. 0</b>
                 </div>
                 <button class="btn-gold w-100" type="submit">CONFIRM ORDER</button>
             </form>
@@ -240,7 +249,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Eau de Parfum</span>
                         <h3 class="product-name">Royal Oud Noir</h3>
-                        <div class="product-price"><b>$280.00</b><span class="stars">★★★★★</span></div>
+                        <div class="product-price"><b>Rs. 28,000</b><span class="stars">★★★★★</span></div>
                     </div>
                 </article>
 
@@ -254,7 +263,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Extrait de Parfum</span>
                         <h3 class="product-name">Imperial Rose &amp; Amber</h3>
-                        <div class="product-price"><b>$320.00</b><span class="stars">★★★★★</span></div>
+                        <div class="product-price"><b>Rs. 32,000</b><span class="stars">★★★★★</span></div>
                     </div>
                 </article>
 
@@ -267,7 +276,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Eau de Toilette</span>
                         <h3 class="product-name">Silver Mist</h3>
-                        <div class="product-price"><b>$150.00</b><span class="stars">★★★★☆</span></div>
+                        <div class="product-price"><b>Rs. 15,000</b><span class="stars">★★★★☆</span></div>
                     </div>
                 </article>
 
@@ -280,7 +289,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Eau de Parfum</span>
                         <h3 class="product-name">Golden Sands</h3>
-                        <div class="product-price"><b>$270.00</b><span class="stars">★★★★★</span></div>
+                        <div class="product-price"><b>Rs. 27,000</b><span class="stars">★★★★★</span></div>
                     </div>
                 </article>
 
@@ -293,7 +302,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Eau de Parfum</span>
                         <h3 class="product-name">Velvet Amber Intense</h3>
-                        <div class="product-price"><b>$185.00</b><span class="stars">★★★★☆</span></div>
+                        <div class="product-price"><b>Rs. 18,500</b><span class="stars">★★★★☆</span></div>
                     </div>
                 </article>
 
@@ -306,7 +315,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Perfume Oil</span>
                         <h3 class="product-name">Rose de Taïf Noir</h3>
-                        <div class="product-price"><b>$150.00</b><span class="stars">★★★★★</span></div>
+                        <div class="product-price"><b>Rs. 15,000</b><span class="stars">★★★★★</span></div>
                     </div>
                 </article>
                 <article class="product" data-cat="floral">
@@ -318,7 +327,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Perfume Oil</span>
                         <h3 class="product-name">OFFICE FOR MEN</h3>
-                        <div class="product-price"><b>$175.00</b><span class="stars">★★★★★</span></div>
+                        <div class="product-price"><b>Rs. 17,500</b><span class="stars">★★★★★</span></div>
                     </div>
                 </article>
                 <article class="product" data-cat="floral">
@@ -330,7 +339,7 @@
                     <div class="product-meta">
                         <span class="product-cat">Perfume Oil</span>
                         <h3 class="product-name">LOCATOSE WHITEs</h3>
-                        <div class="product-price"><b>$180.00</b><span class="stars">★★★★★</span></div>
+                        <div class="product-price"><b>Rs. 18,000</b><span class="stars">★★★★★</span></div>
                     </div>
                 </article>
             </div>
@@ -361,7 +370,7 @@
                             <h3>Royal Oud Noir</h3>
                             <p>Smoked oud layered over dark amber and a whisper of leather — a nocturnal masterpiece.
                             </p>
-                            <b class="slide-price">$280.00</b>
+                            <b class="slide-price">Rs. 28,000</b>
                             <a href="#collections" class="btn-ghost">Add to Bag</a>
                         </figcaption>
                     </figure>
@@ -375,7 +384,7 @@
                             <span class="eyebrow">Floral Embrace</span>
                             <h3>Imperial Rose &amp; Amber</h3>
                             <p>Damask rose and warm amber woven into an imperial bouquet of rare French elegance.</p>
-                            <b class="slide-price">$320.00</b>
+                            <b class="slide-price">Rs. 32,000</b>
                             <a href="#collections" class="btn-ghost">Add to Bag</a>
                         </figcaption>
                     </figure>
@@ -390,7 +399,7 @@
                             <h3>Golden Sands</h3>
                             <p>Sun-drenched amber, saffron and vanilla — the warmth of a desert dusk in a single flacon.
                             </p>
-                            <b class="slide-price">$270.00</b>
+                            <b class="slide-price">Rs. 27,000</b>
                             <a href="#collections" class="btn-ghost">Add to Bag</a>
                         </figcaption>
                     </figure>
@@ -433,7 +442,7 @@
                         <div><b>38% Extrait</b><small>Maximum concentration, all-day sillage</small></div>
                     </div>
                     <div class="story-point"><i class="fa-solid fa-truck-fast"></i>
-                        <div><b>Insured Shipping</b><small>Worldwide with free engraving over $500</small></div>
+                        <div><b>Insured Shipping</b><small>Worldwide with free engraving over Rs. 50,000</small></div>
                     </div>
                 </div>
 
@@ -516,7 +525,7 @@
                 <details>
                     <summary>Do you ship internationally? <i class="fa-solid fa-plus"></i></summary>
                     <p>Yes. We deliver worldwide via insured courier, with complimentary engraving on all orders above
-                        $500.</p>
+                        Rs. 50,000.</p>
                 </details>
                 <details>
                     <summary>Is the collection tested on animals? <i class="fa-solid fa-plus"></i></summary>

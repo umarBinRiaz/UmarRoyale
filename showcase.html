@@ -82,21 +82,21 @@
                 <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=200&q=80" alt="ROYAL OUD NOIR">
                 <div class="cart-row-meta">
                     <strong>ROYAL OUD NOIR</strong>
-                    <small>1 × $280.00</small>
+                    <small>1 × Rs. 28,000</small>
                 </div>
-                <b class="gold-text">$280</b>
+                <b class="gold-text">Rs. 28,000</b>
             </div>
             <div class="cart-row">
                 <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=200&q=80" alt="IMPERIAL ROSE">
                 <div class="cart-row-meta">
                     <strong>IMPERIAL ROSE &amp; AMBER</strong>
-                    <small>2 × $320.00</small>
+                    <small>2 × Rs. 32,000</small>
                 </div>
-                <b class="gold-text">$640</b>
+                <b class="gold-text">Rs. 64,000</b>
             </div>
         </div>
         <div class="drawer-foot">
-            <div class="subtotal">Subtotal <b class="gold-text">$920.00</b></div>
+            <div class="subtotal">Subtotal <b class="gold-text">Rs. 92,000</b></div>
             <label for="modalChk" class="btn-gold">PROCEED TO CHECKOUT</label>
         </div>
     </div>
@@ -156,7 +156,7 @@
                         <span class="product-cat">EAU DE PARFUM</span>
                         <h3 class="product-name">ROYAL OUD NOIR</h3>
                         <div class="product-price">
-                            <b>$280.00</b>
+                            <b>Rs. 28,000</b>
                             <span class="stars">★★★★★</span>
                         </div>
                     </div>
@@ -172,7 +172,7 @@
                         <span class="product-cat">EXTRAIT DE PARFUM</span>
                         <h3 class="product-name">IMPERIAL ROSE &amp; AMBER</h3>
                         <div class="product-price">
-                            <b>$320.00</b>
+                            <b>Rs. 32,000</b>
                             <span class="stars">★★★★★</span>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                         <span class="product-cat">EAU DE TOILETTE</span>
                         <h3 class="product-name">SILVER MIST</h3>
                         <div class="product-price">
-                            <b>$150.00</b>
+                            <b>Rs. 15,000</b>
                             <span class="stars">★★★★☆</span>
                         </div>
                     </div>
@@ -202,7 +202,7 @@
                         <span class="product-cat">EAU DE PARFUM</span>
                         <h3 class="product-name">GOLDEN SANDS</h3>
                         <div class="product-price">
-                            <b>$270.00</b>
+                            <b>Rs. 27,000</b>
                             <span class="stars">★★★★★</span>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                         <span class="product-cat">EAU DE PARFUM</span>
                         <h3 class="product-name">VELVET AMBER INTENSE</h3>
                         <div class="product-price">
-                            <b>$185.00</b>
+                            <b>Rs. 18,500</b>
                             <span class="stars">★★★★☆</span>
                         </div>
                     </div>
@@ -232,7 +232,7 @@
                         <span class="product-cat">FLORAL PERFUME OIL</span>
                         <h3 class="product-name">ROSE DE TAIF NOIR</h3>
                         <div class="product-price">
-                            <b>$150.00</b>
+                            <b>Rs. 15,000</b>
                             <span class="stars">★★★★★</span>
                         </div>
                     </div>
@@ -343,7 +343,7 @@
             </details>
             <details>
                 <summary>Do you ship internationally? <i class="fa-solid fa-plus"></i></summary>
-                <p>Yes. We deliver worldwide via insured courier, with complimentary engraving on orders above $500.</p>
+                <p>Yes. We deliver nationwide via insured courier, with complimentary engraving on orders above Rs. 50,000.</p>
             </details>
             <details>
                 <summary>Is the collection tested on animals? <i class="fa-solid fa-plus"></i></summary>
@@ -402,27 +402,48 @@
                 <input type="text" name="name" placeholder="FULL NAME" required>
                 <input type="tel" name="phone" placeholder="PHONE / MOBILE" required>
                 <textarea name="address" rows="2" placeholder="SHIPPING ADDRESS" required></textarea>
+                <select name="payment" class="checkout-select" required>
+                    <option value="" selected disabled>PAYMENT METHOD — ADVANCE</option>
+                    <option value="JazzCash">JazzCash — Advance</option>
+                    <option value="Easypaisa">Easypaisa — Advance</option>
+                    <option value="Bank Transfer">Bank Transfer — Advance</option>
+                </select>
+                <input type="text" name="payAccount" placeholder="YOUR JAZZCASH / EASYPASA / BANK ACCOUNT NO." required>
+                <p class="pay-note"><i class="fa-solid fa-circle-info"></i> Orders are dispatched only after the advance
+                    payment is confirmed. Our account details will be shared on WhatsApp.</p>
                 <div class="pay-row">
                     <b>Total</b>
-                    <b class="gold-text">$920.00</b>
+                    <b class="gold-text">Rs. 92,000</b>
                 </div>
                 <button class="btn-gold" type="submit">CONFIRM ORDER</button>
             </form>
         </div>
     </div>
 
-    <!-- ===== QUICK VIEW LIGHTBOX (:target) ===== -->
+    <!-- ===== QUICK VIEW LIGHTBOX (:target) with multi-image gallery ===== -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-card">
             <a href="#home" class="panel-close">&times;</a>
             <div class="lightbox-media">
-                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80" alt="Product">
+                <input type="radio" name="gv" id="gv1" class="gv-state" checked hidden>
+                <input type="radio" name="gv" id="gv2" class="gv-state" hidden>
+                <input type="radio" name="gv" id="gv3" class="gv-state" hidden>
+                <div class="lightbox-main">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80" alt="Product">
+                    <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80" alt="Product">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Product">
+                </div>
+                <div class="lightbox-thumbs">
+                    <label for="gv1"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=200&q=80" alt=""></label>
+                    <label for="gv2"><img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=200&q=80" alt=""></label>
+                    <label for="gv3"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=200&q=80" alt=""></label>
+                </div>
             </div>
             <div class="lightbox-meta">
                 <span class="product-cat">EAU DE PARFUM</span>
                 <h3>ROYAL OUD NOIR</h3>
                 <p>A composition of smoke, leather and amber — nocturnal, magnetic, unforgettable.</p>
-                <b class="gold-text">$280.00</b>
+                <b class="gold-text">Rs. 28,000</b>
                 <label for="cartChk" class="btn-gold mt">ADD TO BAG</label>
             </div>
         </div>
