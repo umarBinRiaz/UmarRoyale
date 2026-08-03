@@ -2,8 +2,8 @@
 (function () {
     'use strict';
     var STORAGE_PRODUCTS = 'royale_store_products';
-    var STORAGE_CART     = 'royale_cart';
-    var STORAGE_ORDERS   = 'royale_orders';
+    var STORAGE_CART = 'royale_cart';
+    var STORAGE_ORDERS = 'royale_orders';
     var STORAGE_SETTINGS = 'royale_store_settings';
 
     var IMG = 'https://images.unsplash.com/';
@@ -53,7 +53,7 @@
         },
         {
             id: 'p5', name: 'Velvet Amber Intense', cat: 'oud', tagline: 'Eau de Parfum',
-            price: 18500, rating: 4, stock: 0, bestseller: false,
+            price: 18500, rating: 4, stock: 32, bestseller: false,
             image: GALLERY_POOL[4],
             gallery: galleryFor(GALLERY_POOL[4], [7, 3, 1]),
             description: 'Velvety amber fused with tonka and incense â€” a soft, persistent trail of pure warmth.'
@@ -69,19 +69,19 @@
             id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
             price: 17500, rating: 5, stock: 40, bestseller: true,
             image: 'https://scentus.pk/wp-content/uploads/2026/05/Office.png',
-            gallery: ['https://scentus.pk/wp-content/uploads/2026/05/Office.png', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkkDpA4aqWRDO_jSltJ14ffrMMcAkjP34c8FMQ4EGDqw&s=10','./assets/images.jpg', GALLERY_POOL[4]],
+            gallery: ['https://scentus.pk/wp-content/uploads/2026/05/Office.png', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkkDpA4aqWRDO_jSltJ14ffrMMcAkjP34c8FMQ4EGDqw&s=10', './assets/images.jpg', GALLERY_POOL[4]],
             description: 'A crisp, confident office scent with notes of bergamot, lavender and clean musk.'
         },
         {
             id: 'p8', name: 'LOCATOSE WHITEs', cat: 'floral', tagline: 'Perfume Oil',
             price: 18000, rating: 5, stock: 40, bestseller: false,
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjI330IwycnvpguA8R4aZjc4vIDnYoaxCD0Ht80pFabw&s=10',
-            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjI330IwycnvpguA8R4aZjc4vIDnYoaxCD0Ht80pFabw&s=10', GALLERY_POOL[1], GALLERY_POOL[5], GALLERY_POOL[2]],
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_JFWUKZxgyU6KXF9FM1NraZTDVstA2DOBg7jlKgwyw&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_JFWUKZxgyU6KXF9FM1NraZTDVstA2DOBg7jlKgwyw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqe5NqNpBmJz1eF9y_NsxST1FU7PJPMefTfH7Sv1yZXA&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw8BILh-oF1XBUUTwOaO_VEgA_qJdr2sEPiT75BAIFZw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtyAPSMZm3uiHFZyDal1GjoShZpwtj0bH45Jg7_UFqow&s'],
             description: 'A fresh, clean fragrance with notes of white flowers and a hint of vanilla.'
         }
     ];
 
-    
+
     function read(key, fallback) {
         try {
             var raw = localStorage.getItem(key);
@@ -94,12 +94,12 @@
         try { localStorage.setItem(key, JSON.stringify(value)); } catch (err) { /* ignore */ }
     }
 
-function getProducts() {
-    return DEFAULT_PRODUCTS;
-}
-   function getCart()      { return read(STORAGE_CART, []); }
-    function getOrders()    { return read(STORAGE_ORDERS, []); }
-    function getSettings()  { return read(STORAGE_SETTINGS, {}); }
+    function getProducts() {
+        return DEFAULT_PRODUCTS;
+    }
+    function getCart() { return read(STORAGE_CART, []); }
+    function getOrders() { return read(STORAGE_ORDERS, []); }
+    function getSettings() { return read(STORAGE_SETTINGS, {}); }
 
     /* ------------------------------------------------------------------
        2. STATE
@@ -154,17 +154,17 @@ function getProducts() {
             var out = isOutOfStock(p);
             return '' +
                 '<article class="product' + (out ? ' out-of-stock' : '') + '" data-cat="' + esc(p.cat) + '" data-id="' + esc(p.id) + '">' +
-                    '<div class="product-media">' +
-                        '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/600x280?text=UMAR+ROYALE\'">' +
-                        '<a href="#lb-' + esc(p.id) + '" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>' +
-                        (p.bestseller ? '<span class="product-badge">Bestseller</span>' : (out ? '<span class="product-badge soldout">Sold Out</span>' : '')) +
-                    '</div>' +
-                    '<div class="product-meta">' +
-                        '<span class="product-cat">' + esc(p.tagline || 'Eau de Parfum') + '</span>' +
-                        '<h3 class="product-name">' + esc(p.name) + '</h3>' +
-                        '<div class="product-price"><b>' + money(p.price) + '</b><span class="stars">' + stars(p.rating) + '</span></div>' +
-                        '<button class="product-add" data-add="' + esc(p.id) + '"' + (out ? ' disabled' : '') + '>' + (out ? 'OUT OF STOCK' : 'ADD TO BAG') + '</button>' +
-                    '</div>' +
+                '<div class="product-media">' +
+                '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/600x280?text=UMAR+ROYALE\'">' +
+                '<a href="#lb-' + esc(p.id) + '" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>' +
+                (p.bestseller ? '<span class="product-badge">Bestseller</span>' : (out ? '<span class="product-badge soldout">Sold Out</span>' : '')) +
+                '</div>' +
+                '<div class="product-meta">' +
+                '<span class="product-cat">' + esc(p.tagline || 'Eau de Parfum') + '</span>' +
+                '<h3 class="product-name">' + esc(p.name) + '</h3>' +
+                '<div class="product-price"><b>' + money(p.price) + '</b><span class="stars">' + stars(p.rating) + '</span></div>' +
+                '<button class="product-add" data-add="' + esc(p.id) + '"' + (out ? ' disabled' : '') + '>' + (out ? 'OUT OF STOCK' : 'ADD TO BAG') + '</button>' +
+                '</div>' +
                 '</article>';
         }).join('');
 
@@ -183,24 +183,24 @@ function getProducts() {
             var thumbs = gallery.map(function (src, i) {
                 return '<button type="button" class="thumb' + (i === 0 ? ' active' : '') + '" data-src="' + esc(src) + '" aria-label="View image ' + (i + 1) + '">' +
                     '<img src="' + esc(src) + '" alt="" loading="lazy" onerror="this.closest(\'.thumb\').style.display=\'none\'">' +
-                '</button>';
+                    '</button>';
             }).join('');
             return '' +
                 '<div class="lightbox" id="lb-' + esc(p.id) + '">' +
-                    '<div class="lightbox-card">' +
-                        '<a href="#collections" class="panel-close">&times;</a>' +
-                        '<div class="lightbox-media">' +
-                            '<img class="lightbox-main" src="' + esc(main) + '" alt="' + esc(p.name) + '" onerror="this.src=\'https://via.placeholder.com/600x600?text=UMAR+ROYALE\'">' +
-                            (gallery.length > 1 ? '<div class="lightbox-thumbs">' + thumbs + '</div>' : '') +
-                        '</div>' +
-                        '<div class="lightbox-meta">' +
-                            '<span class="eyebrow">' + esc(p.tagline || 'Eau de Parfum') + '</span>' +
-                            '<h3>' + esc(p.name) + '</h3>' +
-                            '<p>' + esc(p.description || '') + '</p>' +
-                            '<b class="gold-text">' + money(p.price) + '</b>' +
-                            '<button class="btn-gold" data-add="' + esc(p.id) + '"' + (out ? ' disabled' : '') + '>' + (out ? 'SOLD OUT' : 'Add to Bag') + '</button>' +
-                        '</div>' +
-                    '</div>' +
+                '<div class="lightbox-card">' +
+                '<a href="#collections" class="panel-close">&times;</a>' +
+                '<div class="lightbox-media">' +
+                '<img class="lightbox-main" src="' + esc(main) + '" alt="' + esc(p.name) + '" onerror="this.src=\'https://via.placeholder.com/600x600?text=UMAR+ROYALE\'">' +
+                (gallery.length > 1 ? '<div class="lightbox-thumbs">' + thumbs + '</div>' : '') +
+                '</div>' +
+                '<div class="lightbox-meta">' +
+                '<span class="eyebrow">' + esc(p.tagline || 'Eau de Parfum') + '</span>' +
+                '<h3>' + esc(p.name) + '</h3>' +
+                '<p>' + esc(p.description || '') + '</p>' +
+                '<b class="gold-text">' + money(p.price) + '</b>' +
+                '<button class="btn-gold" data-add="' + esc(p.id) + '"' + (out ? ' disabled' : '') + '>' + (out ? 'SOLD OUT' : 'Add to Bag') + '</button>' +
+                '</div>' +
+                '</div>' +
                 '</div>';
         }).join('');
     }
@@ -221,15 +221,15 @@ function getProducts() {
             var out = isOutOfStock(p);
             return '' +
                 '<figure class="slide">' +
-                    '<div class="slide-media"><img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
-                    '<figcaption>' +
-                        '<span class="slide-num">N\u00ba 0' + (i + 1) + '</span>' +
-                        '<span class="eyebrow">House Signature</span>' +
-                        '<h3>' + esc(p.name) + '</h3>' +
-                        '<p>' + esc(p.description || '') + '</p>' +
-                        '<b class="slide-price">' + money(p.price) + '</b>' +
-                        '<button class="btn-ghost" data-add="' + esc(p.id) + '"' + (out ? ' disabled' : '') + '>' + (out ? 'SOLD OUT' : 'Add to Bag') + '</button>' +
-                    '</figcaption>' +
+                '<div class="slide-media"><img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
+                '<figcaption>' +
+                '<span class="slide-num">N\u00ba 0' + (i + 1) + '</span>' +
+                '<span class="eyebrow">House Signature</span>' +
+                '<h3>' + esc(p.name) + '</h3>' +
+                '<p>' + esc(p.description || '') + '</p>' +
+                '<b class="slide-price">' + money(p.price) + '</b>' +
+                '<button class="btn-ghost" data-add="' + esc(p.id) + '"' + (out ? ' disabled' : '') + '>' + (out ? 'SOLD OUT' : 'Add to Bag') + '</button>' +
+                '</figcaption>' +
                 '</figure>';
         }).join('');
     }
@@ -357,11 +357,11 @@ function getProducts() {
     function renderCart() {
         cart = getCart();
 
-        var container  = document.getElementById('cartItems');
-        var countEl    = document.getElementById('cartCount');
-        var bagCount   = document.getElementById('bagCount');
+        var container = document.getElementById('cartItems');
+        var countEl = document.getElementById('cartCount');
+        var bagCount = document.getElementById('bagCount');
         var subtotalEl = document.getElementById('cartSubtotal');
-        var totalEl    = document.getElementById('checkoutTotal');
+        var totalEl = document.getElementById('checkoutTotal');
         var checkoutBtn = document.getElementById('checkoutBtn');
 
         var totalQty = 0;
@@ -387,18 +387,18 @@ function getProducts() {
         container.innerHTML = cart.map(function (item) {
             return '' +
                 '<div class="cart-row" data-id="' + esc(item.id) + '">' +
-                    '<img src="' + esc(item.image) + '" alt="' + esc(item.name) + '">' +
-                    '<div class="cart-row-meta">' +
-                        '<strong>' + esc(item.name) + '</strong>' +
-                        '<small>' + money(item.price) + ' each</small>' +
-                        '<div class="qty-ctrl">' +
-                            '<button class="qty-btn" data-qty="-1" aria-label="Decrease">\u2212</button>' +
-                            '<span class="qty-num">' + item.qty + '</span>' +
-                            '<button class="qty-btn" data-qty="1" aria-label="Increase">+</button>' +
-                            '<button class="cart-remove" data-remove="' + esc(item.id) + '"><i class="fa-solid fa-trash-can"></i> Remove</button>' +
-                        '</div>' +
-                    '</div>' +
-                    '<b class="gold-text">' + money(item.price * item.qty) + '</b>' +
+                '<img src="' + esc(item.image) + '" alt="' + esc(item.name) + '">' +
+                '<div class="cart-row-meta">' +
+                '<strong>' + esc(item.name) + '</strong>' +
+                '<small>' + money(item.price) + ' each</small>' +
+                '<div class="qty-ctrl">' +
+                '<button class="qty-btn" data-qty="-1" aria-label="Decrease">\u2212</button>' +
+                '<span class="qty-num">' + item.qty + '</span>' +
+                '<button class="qty-btn" data-qty="1" aria-label="Increase">+</button>' +
+                '<button class="cart-remove" data-remove="' + esc(item.id) + '"><i class="fa-solid fa-trash-can"></i> Remove</button>' +
+                '</div>' +
+                '</div>' +
+                '<b class="gold-text">' + money(item.price * item.qty) + '</b>' +
                 '</div>';
         }).join('');
     }
@@ -445,8 +445,8 @@ function getProducts() {
                 return;
             }
 
-            var name    = form.elements['name'].value.trim();
-            var phone   = form.elements['phone'].value.trim();
+            var name = form.elements['name'].value.trim();
+            var phone = form.elements['phone'].value.trim();
             var address = form.elements['address'].value.trim();
             var payment = form.elements['payment'] ? form.elements['payment'].value : '';
             var payAccount = form.elements['payAccount'] ? form.elements['payAccount'].value.trim() : '';
