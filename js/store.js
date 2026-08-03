@@ -59,10 +59,10 @@
             description: 'Velvety amber fused with tonka and incense â€” a soft, persistent trail of pure warmth.'
         },
         {
-            id: 'p6', name: 'Rose de TaÃ¯f Noir', cat: 'floral', tagline: 'Perfume Oil',
+            id: 'p6', name: 'Nishane hacivat', cat: 'floral', tagline: 'Perfume Oil',
             price: 15000, rating: 5, stock: 30, bestseller: false,
-            image: GALLERY_POOL[5],
-            gallery: galleryFor(GALLERY_POOL[5], [1, 6, 0]),
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmDsq4tdCffPEZsKXktKsh0UNOIYU95ozESmYgb4fbqw&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmDsq4tdCffPEZsKXktKsh0UNOIYU95ozESmYgb4fbqw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSelHqY7dPCC4NKi1MUhubpXNL0ztMM5podU_JdR8BhfQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1uPXdDnZdGxeDK1WtUwJiZAJTly7pU1AB3yODGWnP_A&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ46lj_o7wH1vyQKv13IWCm-WpuHH7B9-FIcSbn-bMfaw&s=10'],
             description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
         },
         {
