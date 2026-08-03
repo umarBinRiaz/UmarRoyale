@@ -69,7 +69,7 @@
             id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
             price: 17500, rating: 5, stock: 40, bestseller: true,
             image: 'https://scentus.pk/wp-content/uploads/2026/05/Office.png',
-            gallery: ['https://scentus.pk/wp-content/uploads/2026/05/Office.png', GALLERY_POOL[2], GALLERY_POOL[3], GALLERY_POOL[4]],
+            gallery: ['https://scentus.pk/wp-content/uploads/2026/05/Office.png', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkkDpA4aqWRDO_jSltJ14ffrMMcAkjP34c8FMQ4EGDqw&s=10','./assets/images.jpg', GALLERY_POOL[4]],
             description: 'A crisp, confident office scent with notes of bergamot, lavender and clean musk.'
         },
         {
