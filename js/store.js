@@ -38,24 +38,24 @@
             description: 'Damask rose and warm amber woven into an imperial bouquet of rare French elegance.'
         },
         {
-            id: 'p3', name: 'Silver Mist', cat: 'fresh', tagline: 'Eau de Toilette',
+            id: 'p3', name: 'Cool Water', cat: 'fresh', tagline: 'Eau de Toilette',
             price: 15000, rating: 4, stock: 40, bestseller: false,
-            image: GALLERY_POOL[2],
-            gallery: galleryFor(GALLERY_POOL[2], [1, 7, 4]),
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG5HZw4D9CtqHBE-D6GILLrxo5z7Yg2nFVQjPkH-vK4g&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG5HZw4D9CtqHBE-D6GILLrxo5z7Yg2nFVQjPkH-vK4g&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQH8mRWpLIL6c7fxBuNwUhpNHyesu1Q5yAPlLoEm-H6g&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSylU29-k_cF8k5w7pUsqHtKssmbPyuFy8cAxMpP9JU8A&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVcBYtPJdMpCPyFhCsW5rcauQpsRULHa0xJvYkW6noQ&s=10'],
             description: 'A crisp, airy eau de toilette kissed with bergamot, musk and cool silver florals.'
         },
         {
-            id: 'p4', name: 'Golden Sands', cat: 'fresh', tagline: 'Eau de Parfum',
+            id: 'p4', name: 'White Oud', cat: 'fresh', tagline: 'Oud',
             price: 27000, rating: 5, stock: 15, bestseller: true,
-            image: GALLERY_POOL[3],
-            gallery: galleryFor(GALLERY_POOL[3], [6, 0, 2]),
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaJ1LsGPBvg7_46sZH9cBmhXjv2QyHhlWJZHFU1HwYfg&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaJ1LsGPBvg7_46sZH9cBmhXjv2QyHhlWJZHFU1HwYfg&s=10', 'https://notesclub.pk/wp-content/uploads/2024/02/White-OUD-100ml.jpeg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EEkTQ7Dbv3miSlQp_ek6zQzLeP5nk-61TRAiC0rf1Q&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo-BjoFYTiiXcGGeXs6_tU3BKtzd3BaXl49Rm12tqZEQ&s=10'],
             description: 'Sun-drenched amber, saffron and vanilla â€” the warmth of a desert dusk in a single flacon.'
         },
         {
             id: 'p5', name: 'Aventus Absolu', cat: 'oud', tagline: 'Eau de Parfum',
             price: 18500, rating: 4, stock: 32, bestseller: false,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQamt0LKmM2eFLI3pFMUGdCrLPoyf7n8qwdq7UdnjDb-A&s=10',
-            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQamt0LKmM2eFLI3pFMUGdCrLPoyf7n8qwdq7UdnjDb-A&s=10' , 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVBuor5NTcQcf_mrboU4TQEXoaQhPOrM723Og2A9t3nA&s=10' , 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl_qPCblA6wnoEWYcAdq1eeXc6qQnm6h5PH1DxGjLqZQ&s=10' , 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlUisUZjpY7zHiobZRc2Gb5YHi7a1akOyf92T6ru3t-Q&s=10'],
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQamt0LKmM2eFLI3pFMUGdCrLPoyf7n8qwdq7UdnjDb-A&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVBuor5NTcQcf_mrboU4TQEXoaQhPOrM723Og2A9t3nA&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl_qPCblA6wnoEWYcAdq1eeXc6qQnm6h5PH1DxGjLqZQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlUisUZjpY7zHiobZRc2Gb5YHi7a1akOyf92T6ru3t-Q&s=10'],
             description: 'Velvety amber fused with tonka and incense â€” a soft, persistent trail of pure warmth.'
         },
         {
