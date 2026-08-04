@@ -25,7 +25,7 @@
     var DEFAULT_PRODUCTS = [
         {
             id: 'p1', name: 'Creed Aventus', cat: 'oud', tagline: 'Eau de Parfum',
-            price: 28000, rating: 5, stock: 25, bestseller: true,
+            price: 48000, rating: 5, stock: 25, bestseller: true,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTdtgoaDk3RMASlJBKJF40GXsDZttGxP4NBi8lc9TxnQ&s=10',
             gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTdtgoaDk3RMASlJBKJF40GXsDZttGxP4NBi8lc9TxnQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpq8bOnKeHG38K9qpfgMhZrqiLLbd0TnJHbt2iFu89iQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZfVIiDfbOuNEhHIL4eHFZ9K749_aWT-hU3oGsRhpng&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbU0DRYXEeOofo2ST8ruycAt9HyzxVVgNefUVcnR62SQ&s'],
             description: 'Smoked oud layered over dark amber and a whisper of leather â€” a nocturnal masterpiece.'
@@ -73,7 +73,7 @@
             description: 'A crisp, confident office scent with notes of bergamot, lavender and clean musk.'
         },
         {
-            id: 'p8', name: 'LOCATOSE WHITEs', cat: 'floral', tagline: 'Perfume Oil',
+            id: 'p8', name: 'LOCATOSE WHITEs', cat: 'floral', tagline: 'Perfume Oil', ML: 50,
             price: 18000, rating: 5, stock: 40, bestseller: false,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_JFWUKZxgyU6KXF9FM1NraZTDVstA2DOBg7jlKgwyw&s=10',
             gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_JFWUKZxgyU6KXF9FM1NraZTDVstA2DOBg7jlKgwyw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqe5NqNpBmJz1eF9y_NsxST1FU7PJPMefTfH7Sv1yZXA&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw8BILh-oF1XBUUTwOaO_VEgA_qJdr2sEPiT75BAIFZw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtyAPSMZm3uiHFZyDal1GjoShZpwtj0bH45Jg7_UFqow&s'],
@@ -155,7 +155,7 @@
             return '' +
                 '<article class="product' + (out ? ' out-of-stock' : '') + '" data-cat="' + esc(p.cat) + '" data-id="' + esc(p.id) + '">' +
                 '<div class="product-media">' +
-                '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/600x280?text=UMAR+ROYALE\'">' +
+                '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/600x280?text=Noorulain Perfumes\'">' +
                 '<a href="#lb-' + esc(p.id) + '" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>' +
                 (p.bestseller ? '<span class="product-badge">Bestseller</span>' : (out ? '<span class="product-badge soldout">Sold Out</span>' : '')) +
                 '</div>' +
