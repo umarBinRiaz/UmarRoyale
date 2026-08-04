@@ -24,17 +24,17 @@
 
     var DEFAULT_PRODUCTS = [
         {
-            id: 'p1', name: 'Royal Oud Noir', cat: 'oud', tagline: 'Eau de Parfum',
+            id: 'p1', name: 'Creed Aventus', cat: 'oud', tagline: 'Eau de Parfum',
             price: 28000, rating: 5, stock: 25, bestseller: true,
-            image: GALLERY_POOL[0],
-            gallery: galleryFor(GALLERY_POOL[0], [4, 2, 6]),
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTdtgoaDk3RMASlJBKJF40GXsDZttGxP4NBi8lc9TxnQ&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTdtgoaDk3RMASlJBKJF40GXsDZttGxP4NBi8lc9TxnQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpq8bOnKeHG38K9qpfgMhZrqiLLbd0TnJHbt2iFu89iQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZfVIiDfbOuNEhHIL4eHFZ9K749_aWT-hU3oGsRhpng&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbU0DRYXEeOofo2ST8ruycAt9HyzxVVgNefUVcnR62SQ&s'],
             description: 'Smoked oud layered over dark amber and a whisper of leather â€” a nocturnal masterpiece.'
         },
         {
-            id: 'p2', name: 'Imperial Rose & Amber', cat: 'floral', tagline: 'Extrait de Parfum',
+            id: 'p2', name: 'CK One', cat: 'floral', tagline: 'Extrait de Parfum',
             price: 32000, rating: 5, stock: 18, bestseller: true,
-            image: GALLERY_POOL[1],
-            gallery: galleryFor(GALLERY_POOL[1], [5, 0, 7]),
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE0h4IQkpznOTkq5RNj-XYplW4JFrJUZhzTbXkwmafWA&s=10',
+            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE0h4IQkpznOTkq5RNj-XYplW4JFrJUZhzTbXkwmafWA&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcvz4pMChfl9Ut47_XdMXDZGgsjwRLt5abHCjshTjIUw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx_FiVS4tWXQM7ssFbg1-XcNIBjPGqq0Jq9ilwtIz_ag&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD-j5PxzGKql1SAKsI3tvWR3LI-sg9DeElq7daNfaAjg&s=10'],
             description: 'Damask rose and warm amber woven into an imperial bouquet of rare French elegance.'
         },
         {
