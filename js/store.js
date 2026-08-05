@@ -66,14 +66,14 @@
             description: 'Hand-harvested Taif roses deepened with black agarwood â€” romantic, mysterious, rare.'
         },
         {
-            id: 'p7', name: 'OFFICE FOR MEN', cat: 'oud', tagline: 'Perfume Oil',
+            id: 'p7', name: 'Office for Men', cat: 'oud', tagline: 'Perfume Oil',
             price: 17500, rating: 5, stock: 40, bestseller: true,
             image: 'https://scentus.pk/wp-content/uploads/2026/05/Office.png',
             gallery: ['https://scentus.pk/wp-content/uploads/2026/05/Office.png', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkkDpA4aqWRDO_jSltJ14ffrMMcAkjP34c8FMQ4EGDqw&s=10', './assets/images.jpg', GALLERY_POOL[4]],
             description: 'A crisp, confident office scent with notes of bergamot, lavender and clean musk.'
         },
         {
-            id: 'p8', name: 'LOCATOSE WHITEs', cat: 'floral', tagline: 'Perfume Oil', ML: 50,
+            id: 'p8', name: 'Locatose White', cat: 'floral', tagline: 'Perfume Oil', ML: 50,
             price: 18000, rating: 5, stock: 40, bestseller: false,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_JFWUKZxgyU6KXF9FM1NraZTDVstA2DOBg7jlKgwyw&s=10',
             gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_JFWUKZxgyU6KXF9FM1NraZTDVstA2DOBg7jlKgwyw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqe5NqNpBmJz1eF9y_NsxST1FU7PJPMefTfH7Sv1yZXA&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw8BILh-oF1XBUUTwOaO_VEgA_qJdr2sEPiT75BAIFZw&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtyAPSMZm3uiHFZyDal1GjoShZpwtj0bH45Jg7_UFqow&s'],

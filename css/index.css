@@ -259,8 +259,8 @@ a { color: inherit; }
 .nav-btn:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
 
 .nav-btn .fa-moon { display: none; }
-body:has(#themeChk:checked) .nav-btn .fa-sun { display: none; }
-body:has(#themeChk:checked) .nav-btn .fa-moon { display: inline-block; }
+#themeChk:checked ~ .navbar-lux .nav-btn .fa-sun { display: none; }
+#themeChk:checked ~ .navbar-lux .nav-btn .fa-moon { display: inline-block; }
 
 .cart-count {
     position: absolute;
@@ -364,7 +364,7 @@ body:has(#themeChk:checked) .nav-btn .fa-moon { display: inline-block; }
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body:has(#searchChk:checked) .search-panel { transform: translateY(0); }
+#searchChk:checked ~ .search-panel { transform: translateY(0); }
 
 .search-script {
     font-family: var(--font-heading);
@@ -437,7 +437,7 @@ body:has(#searchChk:checked) .search-panel { transform: translateY(0); }
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body:has(#cartChk:checked) .cart-drawer {
+#cartChk:checked ~ .cart-drawer {
     transform: translateX(0);
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
 }
@@ -488,7 +488,7 @@ body:has(#cartChk:checked) .cart-drawer {
     transition: opacity var(--ease), transform var(--ease), visibility var(--ease);
 }
 
-body:has(#modalChk:checked) .checkout-modal {
+#modalChk:checked ~ .checkout-modal {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
@@ -582,9 +582,9 @@ body:has(#modalChk:checked) .checkout-modal {
     cursor: zoom-out;
 }
 
-body:has(#searchChk:checked) .b-search,
-body:has(#cartChk:checked) .b-cart,
-body:has(#modalChk:checked) .b-modal {
+#searchChk:checked ~ .b-search,
+#cartChk:checked ~ .b-cart,
+#modalChk:checked ~ .b-modal {
     opacity: 1;
     visibility: visible;
 }
@@ -732,7 +732,7 @@ body:has(#modalChk:checked) .b-modal {
 .orb-1 { width: 300px; height: 300px; background: var(--gold); top: -60px; right: -60px; opacity: 0.32; }
 .orb-2 { width: 240px; height: 240px; background: #d9c6a0; bottom: -50px; left: -70px; animation-delay: -4s; opacity: 0.4; }
 
-body:has(#themeChk:checked) .orb-2 { background: #4c3d6b; }
+#themeChk:checked ~ main .orb-2 { background: #4c3d6b; }
 
 /* scroll cue */
 .scroll-cue {
@@ -1682,41 +1682,61 @@ body:has(#themeChk:checked) .orb-2 { background: #4c3d6b; }
     .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
     .footer-inner { grid-template-columns: repeat(2, 1fr); gap: 34px; }
 
-    /* Mobile Navigation Drawer */
+    /* Mobile Navigation Drawer (sibling selector — no :has required) */
     .nav-toggle { display: block; }
     .nav-links {
-        position: fixed;
-        top: 86px; left: 0; right: 0;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
         background: var(--surface);
         border-bottom: 1px solid var(--line);
-        padding: 30px 20px;
+        padding: 24px 20px;
         flex-direction: column;
         align-items: center;
-        gap: 16px;
-        transform: translateY(-130%);
-        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 6px;
+        transform: translateY(-12px);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, visibility 0.4s ease;
         z-index: 1900;
         box-shadow: var(--shadow);
     }
-    body:has(#menuChk:checked) .nav-links { transform: translateY(0); }
-    body:has(#menuChk:checked) .nav-toggle i.fa-bars { display: none; }
+    #menuChk:checked ~ .navbar-lux .nav-links {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    #menuChk:checked ~ .navbar-lux .nav-toggle i.fa-bars { display: none; }
     .nav-toggle i.fa-xmark { display: none; }
-    body:has(#menuChk:checked) .nav-toggle i.fa-xmark { display: inline-block; }
+    #menuChk:checked ~ .navbar-lux .nav-toggle i.fa-xmark { display: inline-block; }
 }
 
 /* 3. MOBILE DEVICES (<= 768px) */
 @media screen and (max-width: 768px) {
-    .section, .section-dark > * { padding-left: 20px; padding-right: 20px; }
-    .hero { padding-left: 20px; padding-right: 20px; padding-top: 110px; }
-    .hero-title { font-size: 2.5rem; }
+    html { scroll-padding-top: 72px; }
 
+    .section, .section-dark > * { padding-left: 20px; padding-right: 20px; }
+    .section { padding-top: 80px; padding-bottom: 80px; }
+    .section-dark { padding: 80px 0; }
+    .section-head { margin-bottom: 44px; }
+
+    .hero { padding-left: 20px; padding-right: 20px; padding-top: 100px; }
+    .hero-title { font-size: 2.4rem; }
     .hero-cta { flex-direction: column; width: 100%; }
     .btn-gold, .btn-ghost { width: 100%; }
+
+    .hero-trust { flex-wrap: wrap; justify-content: center; gap: 10px 12px; }
+    .trust-text { text-align: center; }
+
+    /* prevent iOS auto-zoom when focusing inputs */
+    input, select, textarea { font-size: 16px !important; }
+
+    .bottle-frame img { height: 40vh; min-height: 280px; }
 
     .product-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 14px;
     }
+    .product-media img { height: 230px; }
     .product-meta { padding: 14px 10px; }
     .product-name { font-size: 1.1rem; }
 
@@ -1724,28 +1744,144 @@ body:has(#themeChk:checked) .orb-2 { background: #4c3d6b; }
     .stat { padding: 16px 8px; }
     .stat-num { font-size: 1.8rem; }
 
+    .story-visual img { height: 52vw; min-height: 300px; }
+    .story-stamp { right: 10px; bottom: -20px; width: 108px; height: 108px; }
+
+    .slide figcaption { padding-bottom: 64px; }
+    .carousel-dots { bottom: 12px; }
+
+    .contact-wrap { gap: 36px; }
+    .contact-form { padding: 30px 22px; }
+
+    .cart-drawer { padding: 24px 20px; }
+    .checkout-card { padding: 32px 24px; }
+    .search-panel { padding: 116px 20px 44px; }
+
     .lightbox-card { grid-template-columns: 1fr !important; }
     .lightbox-card .lightbox-media { min-height: 0; }
     .lightbox-card .lightbox-main { min-height: 0; height: 35vh; }
     .lightbox-meta { padding: 24px; }
+
+    /* Navbar fine-tuning for tablets & below */
+    .nav-inner { padding: 0 16px; gap: 10px; height: 72px; }
+    .nav-links a { font-size: 0.8rem; padding: 12px 14px; }
+    .brand-title { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 1.28rem; letter-spacing: 2px; }
+    .nav-toggle { flex-shrink: 0; margin-left: auto; }
+    .nav-actions { flex-shrink: 0; gap: 8px; }
+    .nav-btn { width: 38px; height: 38px; font-size: 0.84rem; }
 }
 
 /* 4. EXTRA SMALL PHONES (<= 480px) */
 @media screen and (max-width: 480px) {
+    html { scroll-padding-top: 60px; }
+
     .product-grid {
         grid-template-columns: 1fr !important;
     }
-    .product-media img { height: 320px; }
+    .product-media img { height: 300px; }
+    .product-price { flex-wrap: wrap; gap: 8px; }
+    .product-cat { font-size: 0.56rem; letter-spacing: 2px; }
 
     .stats-row { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 30px; padding-top: 48px; }
 
-    .checkout-card { padding: 28px 18px; width: 95%; }
-    .cart-drawer { width: 100%; max-width: 100vw; }
+    .checkout-card { padding: 26px 16px; width: 95%; }
+    .cart-drawer { width: 100%; max-width: 100vw; padding: 20px 16px; }
+    .cart-row { gap: 10px; }
+    .cart-row img { width: 54px; height: 54px; }
+    .cart-row-meta strong { font-size: 0.74rem; letter-spacing: 0.5px; }
     .cms-link { display: none; }
-    .section-head { margin-bottom: 40px; }
-    .sec-no { font-size: 3.8rem; top: -30px; }
-    .quote p { font-size: 1.25rem; }
+    .section-head { margin-bottom: 36px; }
+    .sec-no { font-size: 3.6rem; top: -28px; }
+    .quote p { font-size: 1.22rem; }
+
+    .hero { padding-top: 90px; }
+    .hero-title { font-size: 2rem; }
+    .hero-text { font-size: 0.88rem; }
+    .eyebrow { font-size: 0.62rem; letter-spacing: 3px; padding-left: 34px; }
+    .section-title { font-size: 2rem; }
+
+    .stats-row { gap: 6px; }
+    .story-point { padding: 14px 14px; }
+
+    .faq-list summary { font-size: 0.84rem; padding: 18px 16px; }
+    .faq-list p { padding: 14px 16px; }
+
+    .info-item { padding: 16px 14px; }
+    .contact-form { padding: 26px 16px; }
+    .drawer-head h3 { font-size: 1.1rem; }
+    .panel-close { top: 14px; right: 18px; }
+    .search-panel { padding: 104px 14px 36px; }
+    .search-input { font-size: 1.25rem; }
+    .back-to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+
+    /* Navbar fine-tuning for phones */
+    .nav-inner { padding: 0 12px; gap: 8px; height: 60px; }
+    .nav-toggle { font-size: 1.1rem; }
+    .nav-actions { gap: 6px; }
+    .nav-btn { width: 36px; height: 36px; font-size: 0.8rem; }
+    .brand-title { font-size: 1.02rem; letter-spacing: 1.5px; }
+}
+
+/* 5. VERY SMALL PHONES (<= 360px) */
+@media screen and (max-width: 360px) {
+    .brand-title { font-size: 0.95rem; letter-spacing: 1px; }
+    .nav-btn { width: 33px; height: 33px; font-size: 0.76rem; }
+    .nav-toggle { font-size: 1.05rem; }
+    .nav-actions { gap: 4px; }
+    .product-media img { height: 260px; }
+}
+
+/* ==========================================================================
+   MICRO-ANIMATIONS (subtle, tasteful)
+   ========================================================================== */
+
+/* cart badge — soft pulse ring */
+.cart-count {
+    animation: badge-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(200, 163, 92, 0.55); }
+    50% { box-shadow: 0 0 0 7px rgba(200, 163, 92, 0); }
+}
+
+/* product image — shimmer sweep on hover */
+.product:hover .product-media::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -85%;
+    width: 55%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    animation: shine-sweep 0.85s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes shine-sweep { to { left: 135%; } }
+
+/* buttons & icon buttons — gentle tap feedback */
+.btn-gold:active,
+.btn-ghost:active,
+.nav-btn:active,
+.back-to-top:active { transform: scale(0.96); }
+
+/* micro tilt on product hover */
+.product:hover { transform: translateY(-9px) rotate(-0.6deg); }
+.product:hover .product-media img { transform: scale(1.09) rotate(0.5deg); }
+
+/* floating hero badge — gentle bob (decorative) */
+.badge-rotate i { animation: badge-bob 4s ease-in-out infinite; }
+
+@keyframes badge-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* remove mobile tap highlight */
+@media (hover: none) {
+    body { -webkit-tap-highlight-color: transparent; }
 }
 
 /* Reduced Motion Override */

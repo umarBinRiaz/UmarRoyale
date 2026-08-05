@@ -261,6 +261,38 @@
             .admin-sidebar.show { left: 0; box-shadow: 20px 0 60px rgba(0, 0, 0, 0.5); }
             .admin-content { padding: 1.1rem; }
         }
+
+        @media (max-width: 768px) {
+            .admin-content { padding: 0.9rem; }
+            .top-navbar { padding: 0.9rem 1rem; }
+            .admin-card { padding: 1.1rem; }
+            .stat-card { gap: 8px; }
+            .stat-card .stat-num { font-size: 1.5rem; }
+            .stat-icon { width: 44px; height: 44px; font-size: 1.1rem; }
+            .auth-card { padding: 2rem 1.6rem; }
+
+            /* prevent iOS auto-zoom when focusing inputs */
+            input, select, textarea { font-size: 16px !important; }
+        }
+
+        @media (max-width: 480px) {
+            .admin-content { padding: 0.75rem; }
+            .top-navbar { padding: 0.8rem 0.9rem; }
+            .admin-card { padding: 1rem; }
+            .stat-card { flex-direction: column; align-items: flex-start; }
+            .stat-icon { position: absolute; top: 0.9rem; right: 0.9rem; width: 38px; height: 38px; font-size: 1rem; }
+            .stat-card { position: relative; padding-right: 56px; }
+            .stat-card .stat-num { font-size: 1.3rem; overflow-wrap: break-word; }
+            .auth-card { padding: 1.8rem 1.3rem; }
+            .stock-control .qty-btn { width: 24px; height: 24px; }
+            .toast-cms { right: 12px; bottom: 12px; left: 12px; text-align: center; }
+        }
+
+        @media (max-width: 360px) {
+            .stat-card .stat-num { font-size: 1.15rem; }
+            .stat-icon { width: 34px; height: 34px; font-size: 0.9rem; }
+            .top-navbar h5 { font-size: 1rem; }
+        }
     </style>
 </head>
 <body>

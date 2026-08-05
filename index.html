@@ -286,7 +286,8 @@
                         <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"
                             alt="GOLDEN SANDS">
                         <a href="#lb4" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>
-                    </div>
+                    </div>again 
+                    
                     <div class="product-meta">
                         <span class="product-cat">Eau de Parfum</span>
                         <h3 class="product-name">Golden Sands</h3>
@@ -622,6 +623,19 @@
 
     <!-- Back to top -->
     <a href="#home" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Close the mobile nav drawer when a link is tapped -->
+    <script>
+        (function () {
+            var menu = document.getElementById('menuChk');
+            if (menu) {
+                var links = document.querySelectorAll('.nav-links a');
+                for (var i = 0; i < links.length; i++) {
+                    links[i].addEventListener('click', function () { menu.checked = false; });
+                }
+            }
+        })();
+    </script>
 
     <!-- Storefront Engine -->
     <script src="./js/store.js"></script>
