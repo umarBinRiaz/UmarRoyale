@@ -129,7 +129,7 @@
     }
 
     function whatsappNumber() {
-        return String(getSettings().whatsapp || '923400085347').replace(/[^\d]/g, '');
+        return String(getSettings().whatsapp || '923092230740').replace(/[^\d]/g, '');
     }
 
     function openCheckbox(id) {
