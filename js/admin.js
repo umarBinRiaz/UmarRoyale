@@ -467,7 +467,6 @@ function setupCmsFormSubmission() {
 
         const cmsData = {
             sub: document.getElementById('cmsSub').value,
-            title: document.getElementById('cmsTitle').value,
             desc: document.getElementById('cmsDesc').value
         };
 
