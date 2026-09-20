@@ -1,10 +1,10 @@
 ﻿
 (function () {
     'use strict';
-    var STORAGE_PRODUCTS = 'noorulain_store_products';
-    var STORAGE_CART = 'noorulain_cart';
-    var STORAGE_ORDERS = 'noorulain_orders';
-    var STORAGE_SETTINGS = 'noorulain_store_settings';
+    var STORAGE_PRODUCTS = 'royale_store_products';
+    var STORAGE_CART = 'royale_cart';
+    var STORAGE_ORDERS = 'royale_orders';
+    var STORAGE_SETTINGS = 'royale_store_settings';
 
     var IMG = 'https://images.unsplash.com/';
     var GALLERY_POOL = [
@@ -95,6 +95,9 @@
     }
 
     function getProducts() {
+        var stored = read(STORAGE_PRODUCTS, null);
+        if (stored !== null && Array.isArray(stored) && stored.length > 0) return stored;
+        write(STORAGE_PRODUCTS, DEFAULT_PRODUCTS);
         return DEFAULT_PRODUCTS;
     }
     function getCart() { return read(STORAGE_CART, []); }
@@ -577,6 +580,7 @@
     window.addEventListener('storage', function (e) {
         if (e.key === STORAGE_CART) { renderCart(); }
         if (e.key === STORAGE_PRODUCTS) { renderProducts(); renderLightboxes(); renderCarousel(); }
+        if (e.key === STORAGE_ORDERS) { /* admin can see orders */ }
         if (e.key === STORAGE_SETTINGS) { /* no live UI needed */ }
     });
 
