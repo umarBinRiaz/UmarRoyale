@@ -1,170 +1,77 @@
 # UMAR ROYALE — Perfume E-commerce Website
 
-A luxury perfume e-commerce website with a comprehensive admin panel, built with modern web technologies.
+A luxury perfume e-commerce website with a comprehensive admin panel, built with vanilla HTML, CSS, and JavaScript.
 
 ## Features
 
 ### Main Website (index.html)
-- ✅ **Responsive Design**: Fully responsive across all devices (320px to 4K screens)
-- ✅ **Pure CSS Components**: Advanced CSS features including:
-  - State-based interactions (checkbox/radio hacks)
-  - Scroll-driven animations
-  - Lightbox galleries
-  - Auto-playing carousels
-  - Filterable product grids
-- ✅ **E-commerce Functionality**: 
-  - Product catalog with filtering
-  - Shopping cart with add-to-bag
-  - Checkout process with WhatsApp integration
-  - Order management system
-- ✅ **Modern UI/UX**:
-  - Dark/light theme toggle
-  - Cinematic intro animation
-  - Glass-morphism effects
-  - Smooth scroll navigation
-- ✅ **Mobile-Optimized**:
-  - Touch-friendly interface
-  - Responsive navigation drawer
-  - Optimized form inputs for mobile
+- Responsive Design — 320px to 4K screens
+- Pure CSS Components — checkbox/radio hacks, scroll-driven animations, lightbox galleries, carousels, filterable product grids
+- E-commerce — product catalog, shopping cart, checkout with WhatsApp integration, order management
+- Dark/light theme toggle, cinematic intro animation, glass-morphism effects
+- Mobile-optimized touch interface with responsive navigation drawer
 
 ### Admin Panel (admin.html)
-- ✅ **Modern Admin Dashboard**: Professional CMS interface
-- ✅ **Live Data Sync**: Real-time synchronization with storefront
-- ✅ **Product Management**: Add/edit/delete products with validation
-- ✅ **Order Processing**: Track and manage customer orders
-- ✅ **Settings Management**: Configure WhatsApp number and passcode
-- ✅ **Responsive Admin**: Works perfectly on desktop and tablets
-- ✅ **Security**: Passcode protection for admin access
+- Professional CMS dashboard with Bootstrap 5
+- Live data sync with storefront via localStorage
+- Product management, order tracking, settings
+- Passcode-protected access
 
-### Key Technologies
+## Tech Stack
 
-#### Frontend
-- **HTML5** with semantic structure
-- **CSS3** with advanced features:
-  - CSS Grid & Flexbox layouts
-  - CSS Variables for theming
-  - CSS Scroll-driven animations
-  - CSS Custom properties
-  - CSS selectors (:has, :target, etc.)
-- **JavaScript** for e-commerce:
-  - LocalStorage data persistence
-  - Real-time cart management
-  - Form validation
-  - Cross-tab synchronization
+- **HTML5** — semantic structure
+- **CSS3** — Grid, Flexbox, Custom Properties, Scroll-driven animations, `:has()`, `:target()`
+- **JavaScript** — Vanilla, localStorage persistence, cross-tab sync
+- **No build tools, no frameworks, no dependencies**
 
-#### Design Philosophy
-- **Mobile-First Approach**: Optimized for mobile devices first
-- **Performance-Focused**: Minimal JavaScript, heavy CSS usage
-- **Accessibility**: ARIA labels and semantic HTML
-- **Modern Aesthetics**: Luxury branding with clean interfaces
-- **Cross-Device Compatibility**: Works on desktop, tablet, mobile
-
-## Mobile Responsive Fixes Applied
-
-### Issues Identified and Fixed:
-
-1. **0.5-Second Responsive Delay** (index.css:1797-1798)
-   - **Problem**: Intro animation caused temporary layout break
-   - **Fix**: Reduced intro animation duration from 1.15s to 0.5s
-
-2. **Cart Drawer Horizontal Issues** (index.css:430-444, advanced.css:257-274)
-   - **Problem**: Fixed width and transform values causing overflow
-   - **Fix**: Changed from `width: 400px; max-width: 94vw; transform: translateX(105%)` to `width: 100%; max-width: 100vw; transform: translateX(100%)`
-
-3. **Search Panel Padding** (index.css:82-94, advanced.css:189-201)
-   - **Problem**: Excessive top padding on mobile
-   - **Fix**: Reduced from `padding: 130px 24px 50px` to `padding: 90px 16px 40px`
-
-4. **Admin Panel Modernized** (admin.css)
-   - **Problem**: Outdated, basic admin interface
-   - **Fix**: Completely redesigned with modern:
-     - Glass-morphism effects
-     - Responsive grid layout
-     - Professional color scheme
-     - Mobile-first design
-     - Smooth animations
-
-5. **Fixed Body Overflow** (admin.css:12-16)
-   - **Problem**: `width: 100vw` causing horizontal overflow
-   - **Fix**: Changed to `position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); overflow-x: hidden`
-
-### Media Query Breakpoints:
-- **Extra Small (<=360px)**: Small phones
-- **Small (<=480px)**: Larger phones
-- **Mobile (<=768px)**: Tablets & small screens
-- **Tablet (<=1024px)**: Landscape tablets
-- **Large (>=1440px)**: 4K displays
-
-## Files Structure
+## File Structure
 
 ```
 .
-├── index.html              ← Main e-commerce storefront
-├── admin.html              ← Modern admin dashboard (recreated)
+├── index.html          ← Main storefront
+├── admin.html          ← Admin/CMS panel
+├── store.js            ← E-commerce engine (cart, products, checkout)
+├── server.js           ← Local Node.js dev server (optional)
+├── package.json        ← NPM manifest (no dependencies)
 ├── css/
-│   ├── index.css          ← Main website styles
-│   ├── advanced.css       ← Alternative advanced styles
-│   ├── admin.css          ← Admin panel styles
-│   └── style.css          ← Legacy/secondary styles
-├── js/
-│   ├── store.js           ← E-commerce functionality
-│   ├── script.js          ← ?
-│   ├── main.js            ← ?
-│   ├── app.js             ← ?
-│   ├── admin.js           ← ?
-│   └── 3d-hero.js         ← ?
-├── assets/                ← Product images & branding
-└── README.md              ← This documentation
+│   └── index.css       ← All website styles (1950 lines)
+├── assets/
+│   ├── 01.png–05.png   ← Product images
+│   ├── images.jpg      ← Product thumbnail
+│   └── u.png           ← Favicon
+└── README.md
 ```
-
-## Technical Highlights
-
-### Advanced CSS Features
-- **Scroll-Driven Animations**: CSS animations tied to scroll position
-- **State Selectors**: Using `:has()` and `:target()` for interactions
-- **CSS Grid Layouts**: Complex multi-column layouts
-- **CSS Custom Properties**: Dynamic theming system
-- **CSS Transforms**: Smooth animations without JavaScript
-
-### E-commerce Capabilities
-- **LocalStorage Integration**: Browser-based data persistence
-- **Real-time Updates**: Instant UI changes without page reloads
-- **Form Validation**: Client-side validation with user feedback
-- **WhatsApp Integration**: Direct ordering via WhatsApp
-- **Responsive Product Grid**: Adaptive layout for all screen sizes
-
-### User Experience
-- **Performance Optimized**: Heavy CSS usage, minimal JavaScript
-- **Accessibility First**: ARIA labels and semantic HTML
-- **Touch-Friendly**: Optimized for mobile touch interactions
-- **Visual Hierarchy**: Clear content hierarchy and scannability
-- **Micro-interactions**: Subtle animations enhancing user experience
 
 ## Usage
 
-### For Developers
-1. Clone the repository
-2. Open `index.html` in your browser to view the storefront
-3. Open `admin.html` to access the admin panel
-4. Default admin credentials: Passcode `royale2026`
+### Quick Start (no server needed)
+Open `index.html` directly in a browser. The site works as a static website.
 
-### Customization
-- **Branding**: Modify CSS variables in `:root` blocks
-- **Products**: Edit `js/store.js` DEFAULT_PRODUCTS array
-- **Content**: Update HTML content directly
-- **Themes**: Toggle `#themeChk` checkbox for dark/light mode
+### Local Development Server
+```bash
+npm start
+# Server runs at http://localhost:3000
+```
 
-### Testing
-The website has been tested on:
-- Desktop browsers (Chrome, Firefox, Safari, Edge)
-- Mobile devices (iPhone, Android)
-- Tablets (iPad, Android tablets)
-- Responsive design tools
+### Admin Panel
+Navigate to `admin.html` (link in the footer). Default passcode: `royale2026`.
 
-## Development Notes
+### GitHub Pages Deployment
+Push to GitHub and enable Pages in repo settings. The site is fully static — no server required.
 
-This project demonstrates advanced CSS techniques and modern web development practices. The focus on CSS-based interactions reduces JavaScript dependency, improving performance and accessibility.
+## Customization
 
-The admin panel was completely rebuilt to match the modern aesthetic of the storefront, providing a consistent and professional user experience across the entire platform.
+- **Products**: Edit the `DEFAULT_PRODUCTS` array in `store.js`
+- **Branding**: Modify CSS variables in `:root` block of `css/index.css`
+- **WhatsApp number**: Configure in admin panel settings
+- **Content**: Update HTML directly in `index.html`
 
-All responsive issues have been systematically addressed, ensuring the website works flawlessly across all device sizes and screen orientations.
+## Browser Support
+
+- Chrome, Firefox, Safari, Edge (desktop)
+- Android Chrome, iOS Safari (mobile)
+- Tablets (iPad, Android)
+
+## License
+
+ISC

@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const MIME_TYPES = {
     '.html': 'text/html',
@@ -18,7 +18,13 @@ const MIME_TYPES = {
     '.webp': 'image/webp',
     '.woff': 'font/woff',
     '.woff2': 'font/woff2',
-    '.ttf': 'font/ttf'
+    '.ttf': 'font/ttf',
+    '.mp4': 'video/mp4',
+    '.webm': 'video/webm',
+    '.mp3': 'audio/mpeg',
+    '.wav': 'audio/wav',
+    '.ogg': 'audio/ogg',
+    '.otf': 'font/otf'
 };
 
 const server = http.createServer((req, res) => {
@@ -41,14 +47,14 @@ const server = http.createServer((req, res) => {
         } else {
             res.writeHead(200, {
                 'Content-Type': contentType,
-                'Cache-Control': 'no-cache'
+                'Cache-Control': 'public, max-age=3600'
             });
             res.end(content);
         }
     });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log('=================================');
     console.log('  UMAR ROYALE — Server Running');
     console.log('  http://localhost:' + PORT);

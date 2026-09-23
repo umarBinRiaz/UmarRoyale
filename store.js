@@ -24,10 +24,10 @@
 
     var DEFAULT_PRODUCTS = [
         {
-            id: 'p1', name: 'Creed Aventus', cat: 'oud', tagline: 'Eau de Parfum',
-            price: 48000, rating: 5, stock: 25, bestseller: true,
+            id: 'p1', name: 'Black and Silver', cat: 'oud', tagline: 'Eau de Parfum',
+            price: 5000, rating: 5, stock: 25, bestseller: true,
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTdtgoaDk3RMASlJBKJF40GXsDZttGxP4NBi8lc9TxnQ&s=10',
-            gallery: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTdtgoaDk3RMASlJBKJF40GXsDZttGxP4NBi8lc9TxnQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpq8bOnKeHG38K9qpfgMhZrqiLLbd0TnJHbt2iFu89iQ&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZfVIiDfbOuNEhHIL4eHFZ9K749_aWT-hU3oGsRhpng&s=10', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbU0DRYXEeOofo2ST8ruycAt9HyzxVVgNefUVcnR62SQ&s'],
+            gallery: ['./assets/01.png', './assets/02.png', './assets/03.png', './assets/04.png'],
             description: 'Smoked oud layered over dark amber and a whisper of leather â€” a nocturnal masterpiece.'
         },
         {
@@ -158,7 +158,7 @@
             return '' +
                 '<article class="product' + (out ? ' out-of-stock' : '') + '" data-cat="' + esc(p.cat) + '" data-id="' + esc(p.id) + '">' +
                 '<div class="product-media">' +
-                '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/600x280?text=Noorulain Perfumes\'">' +
+                '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/600x280?text=UMAR+ROYALE\'">' +
                 '<a href="#lb-' + esc(p.id) + '" class="product-quickview"><i class="fa-solid fa-eye"></i> Quick View</a>' +
                 (p.bestseller ? '<span class="product-badge">Bestseller</span>' : (out ? '<span class="product-badge soldout">Sold Out</span>' : '')) +
                 '</div>' +
